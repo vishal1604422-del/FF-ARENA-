@@ -1,244 +1,144 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FF ARENA - Free Fire Tournaments</title>
-
-<style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#090d18;
-  color:white;
-}
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:18px 6%;
-  background:#111827;
-  border-bottom:2px solid #ff354f;
-}
-.logo{font-size:25px;font-weight:bold;color:#ff354f}
-button,a{cursor:pointer}
-button{
-  background:#ff354f;
-  color:white;
-  border:0;
-  padding:12px 18px;
-  border-radius:6px;
-  font-weight:bold;
-}
-.hero{
-  text-align:center;
-  padding:75px 15px;
-  background:linear-gradient(135deg,#18243c,#090d18);
-}
-.hero h1{font-size:48px;margin:12px}
-.hero span{color:#ff354f}
-.hero p{color:#b7c2d5}
-.section{padding:40px 6%}
-.section h2{color:#ff5368}
-.categories,.matches{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
-}
-.card{
-  background:#151f31;
-  padding:22px;
-  border:1px solid #34415b;
-  border-radius:10px;
-}
-.card h3{color:#ff5368}
-.card p{color:#c4ccda;line-height:1.6}
-.join{width:100%;margin-top:10px}
-.info{
-  background:#111827;
-  padding:25px;
-  border-radius:10px;
-  line-height:1.7;
-}
-footer{
-  text-align:center;
-  padding:25px;
-  color:#9ba8bc;
-  background:#111827;
-}
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:#000c;
-  justify-content:center;
-  align-items:center;
-  padding:15px;
-}
-.modal-box{
-  background:#151f31;
-  padding:25px;
-  border-radius:10px;
-  width:100%;
-  max-width:380px;
-}
-input{
-  width:100%;
-  padding:13px;
-  margin:8px 0;
-  background:#090d18;
-  border:1px solid #45516a;
-  color:white;
-  border-radius:5px;
-}
-.modal-box button{width:100%;margin-top:10px}
-.close{background:#38445a}
-@media(max-width:500px){
- .hero h1{font-size:35px}
- header{padding:15px}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FF ARENA | Free Fire Tournaments</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #090d18;
+      color: white;
+    }
+    header {
+      background: #121a2c;
+      padding: 22px;
+      text-align: center;
+      border-bottom: 2px solid #ff8a00;
+    }
+    header h1 { color: #ff9d00; margin: 0; }
+    header p { color: #bdc7d9; }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px;
+      background: #0e1524;
+      flex-wrap: wrap;
+    }
+    nav a { color: white; text-decoration: none; }
+    .hero {
+      text-align: center;
+      padding: 55px 15px;
+      background: linear-gradient(135deg,#202b45,#101522);
+    }
+    .hero h2 { font-size: 34px; }
+    .hero span { color: #ff9800; }
+    .btn {
+      display: inline-block;
+      background: #ff8a00;
+      color: #111;
+      padding: 12px 22px;
+      border-radius: 7px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section { padding: 25px 16px; max-width: 1000px; margin: auto; }
+    section h2 { color: #ff9d00; text-align: center; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 16px;
+    }
+    .card {
+      background: #151e30;
+      border: 1px solid #34415b;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .card h3 { color: #ffad33; }
+    .price { color: #55e6a5; font-weight: bold; }
+    footer {
+      text-align: center;
+      padding: 22px;
+      background: #121a2c;
+      color: #aab4c5;
+    }
+  </style>
 </head>
-
 <body>
 
 <header>
-  <div class="logo">🔥 FF ARENA</div>
-  <button onclick="openLogin()">LOGIN / REGISTER</button>
+  <h1>🔥 FF ARENA</h1>
+  <p>Battle • Compete • Win</p>
 </header>
 
-<section class="hero">
-  <p>INDIA'S BATTLE ARENA</p>
-  <h1>YOUR NEXT <span>BOOYAH</span><br>STARTS HERE!</h1>
-  <p>Join tournaments • Compete • Win Rewards</p>
-  <button onclick="document.getElementById('matches').scrollIntoView()">EXPLORE MATCHES</button>
-</section>
+<nav>
+  <a href="#home">Home</a>
+  <a href="#tournaments">Tournaments</a>
+  <a href="#modes">Game Modes</a>
+  <a href="#register">Register</a>
+</nav>
 
-<section class="section">
-  <h2>⚔️ Choose Your Battle</h2>
-  <div class="categories">
+<div class="hero" id="home">
+  <h2>WELCOME TO <span>FF ARENA</span></h2>
+  <p>Your battlefield. Your victory.</p>
+  <a class="btn" href="#tournaments">Explore Matches</a>
+</div>
+
+<section id="modes">
+  <h2>GAME MODES</h2>
+  <div class="cards">
     <div class="card">
       <h3>BR SURVIVAL</h3>
-      <p>Solo, Duo और Rank Match</p>
-      <button onclick="showCategory('BR Survival')">VIEW MATCHES</button>
+      <p>Solo • Duo • Rank Match</p>
     </div>
     <div class="card">
       <h3>LONE WOLF</h3>
-      <p>Solo और Duo Battle</p>
-      <button onclick="showCategory('Lone Wolf')">VIEW MATCHES</button>
+      <p>Solo • Duo</p>
     </div>
     <div class="card">
       <h3>CLASH SQUAD</h3>
-      <p>1v1, 2v2 और 4v4</p>
-      <button onclick="showCategory('Clash Squad')">VIEW MATCHES</button>
+      <p>1v1 • 2v2 • 4v4</p>
     </div>
   </div>
 </section>
 
-<section class="section" id="matches">
-  <h2>🏆 Available Tournaments</h2>
-  <div class="matches" id="matchList"></div>
-</section>
-
-<section class="section">
-  <h2>📌 How To Join</h2>
-  <div class="info">
-    1. अपना अकाउंट Register करो।<br>
-    2. अपनी पसंद का Tournament चुनो।<br>
-    3. Entry Fee और Prize की जानकारी देखो।<br>
-    4. Join Match दबाओ।<br>
-    5. Room ID और Password Admin द्वारा दिए जाएँगे।
+<section id="tournaments">
+  <h2>UPCOMING TOURNAMENTS</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>BR Survival Solo</h3>
+      <p>Entry Fee: ₹10</p>
+      <p class="price">₹8 Per Kill</p>
+    </div>
+    <div class="card">
+      <h3>BR Survival Duo</h3>
+      <p>Entry Fee: ₹15</p>
+      <p class="price">₹10 Per Kill</p>
+    </div>
+    <div class="card">
+      <h3>Clash Squad</h3>
+      <p>Entry Fee: To be announced</p>
+      <p class="price">Prize details coming soon</p>
+    </div>
   </div>
 </section>
 
-<section class="section">
-  <h2>👤 Player Account</h2>
-  <div class="info">
-    अपना FF ARENA अकाउंट बनाओ और टूर्नामेंट में हिस्सा लो।
-    <br><br>
-    <button onclick="openLogin()">LOGIN / REGISTER</button>
+<section id="register">
+  <h2>PLAYER REGISTRATION</h2>
+  <div class="card" style="text-align:center">
+    <p>Player registration and match joining will be available soon.</p>
+    <p>Stay tuned for FF ARENA updates!</p>
   </div>
 </section>
 
 <footer>
-  <h3>🔥 FF ARENA</h3>
-  <p>Fight • Win • Repeat</p>
-  <p>© 2026 FF ARENA</p>
-  <p>Not affiliated with Garena.</p>
+  <p>© 2026 FF ARENA. All Rights Reserved.</p>
+  <p>Website demo — registration and payments are not live yet.</p>
 </footer>
-
-<div class="modal" id="loginModal">
-  <div class="modal-box">
-    <h2 id="formTitle">Player Registration</h2>
-    <input id="playerName" placeholder="Player Name">
-    <input id="playerEmail" type="email" placeholder="Email Address">
-    <input id="playerUID" placeholder="Free Fire UID">
-    <input id="playerPassword" type="password" placeholder="Password">
-    <button onclick="registerPlayer()">REGISTER</button>
-    <button class="close" onclick="closeLogin()">CLOSE</button>
-    <p id="message"></p>
-  </div>
-</div>
-
-<script>
-const tournaments = [
- {category:"BR Survival",name:"BR Survival Solo",mode:"Solo",fee:10,prize:"₹8 per kill"},
- {category:"BR Survival",name:"BR Survival Duo",mode:"Duo",fee:15,prize:"₹10 per kill"},
- {category:"BR Survival",name:"BR Survival Rank Match",mode:"Rank",fee:20,prize:"1st ₹100 • 2nd ₹80 • 3rd ₹50"},
- {category:"Lone Wolf",name:"Lone Wolf Solo",mode:"Solo",fee:30,prize:"Winner ₹50"},
- {category:"Lone Wolf",name:"Lone Wolf Duo",mode:"Duo",fee:30,prize:"Prize to be announced"},
- {category:"Clash Squad",name:"Clash Squad 1v1",mode:"1v1",fee:10,prize:"Prize to be announced"},
- {category:"Clash Squad",name:"Clash Squad 2v2",mode:"2v2",fee:10,prize:"Prize to be announced"},
- {category:"Clash Squad",name:"Clash Squad 4v4",mode:"4v4",fee:10,prize:"Prize to be announced"}
-];
-
-function renderMatches(category="All"){
- const list=document.getElementById("matchList");
- const filtered=tournaments.filter(t=>category==="All"||t.category===category);
- list.innerHTML=filtered.map(t=>`
-  <div class="card">
-   <h3>${t.name}</h3>
-   <p>Mode: ${t.mode}</p>
-   <p>Entry Fee: ₹${t.fee}</p>
-   <p>Prize: ${t.prize}</p>
-   <button class="join" onclick="joinMatch('${t.name}')">JOIN MATCH</button>
-  </div>
- `).join("");
-}
-
-function showCategory(category){
- renderMatches(category);
- document.getElementById("matches").scrollIntoView();
-}
-
-function openLogin(){
- document.getElementById("loginModal").style.display="flex";
-}
-function closeLogin(){
- document.getElementById("loginModal").style.display="none";
-}
-
-function registerPlayer(){
- const name=document.getElementById("playerName").value.trim();
- const email=document.getElementById("playerEmail").value.trim();
- const uid=document.getElementById("playerUID").value.trim();
- const password=document.getElementById("playerPassword").value;
-
- if(!name||!email||!uid||!password){
-  document.getElementById("message").textContent="सभी जानकारी भरो।";
-  return;
- }
- document.getElementById("message").textContent=
- "यह अभी Demo Registration है। Firebase जोड़ने के बाद अकाउंट बनेगा।";
-}
-
-function joinMatch(name){
- alert(name+" चुना गया है। असली Join और Payment सुविधा जोड़ना अभी बाकी है।");
-}
-
-renderMatches();
-</script>
 
 </body>
 </html>
