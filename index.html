@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,53 +7,27 @@
 <title>FF ARENA | Gaming Tournaments</title>
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;background:#080d18;color:white;
- font-family:Arial,sans-serif
-}
-header{
- background:#111a2b;padding:20px;
- text-align:center;border-bottom:2px solid #ff9800
-}
+body{margin:0;background:#080d18;color:white;font-family:Arial,sans-serif}
+header{background:#111a2b;padding:20px;text-align:center;border-bottom:2px solid #ff9800}
 header h1{color:#ff9800;margin:0}
-nav{
- display:flex;justify-content:center;gap:20px;
- padding:16px;background:#10182a;flex-wrap:wrap
-}
+nav{display:flex;justify-content:center;gap:16px;padding:16px;background:#10182a;flex-wrap:wrap}
 nav a{color:white;text-decoration:none}
-.hero{
- text-align:center;padding:65px 15px;
- background:linear-gradient(135deg,#263550,#111827)
-}
-.hero h2{font-size:38px}
+.hero{text-align:center;padding:60px 15px;background:linear-gradient(135deg,#263550,#111827)}
+.hero h2{font-size:34px}
 .hero span{color:#ff9800}
-.btn{
- display:inline-block;background:#ff9800;color:#111;
- padding:12px 22px;border-radius:8px;
- text-decoration:none;font-weight:bold
-}
+.btn{display:inline-block;background:#ff9800;color:#111;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:bold;cursor:pointer;border:0}
 section{padding:30px 16px;max-width:1100px;margin:auto}
 h2{text-align:center;color:#ffae35}
-.cards{
- display:grid;grid-template-columns:
- repeat(auto-fit,minmax(230px,1fr));gap:18px
-}
-.card{
- background:#151f32;padding:22px;
- border:1px solid #34445f;border-radius:14px
-}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.card{background:#151f32;padding:22px;border:1px solid #34445f;border-radius:14px}
 .card h3{color:#ffae35}
 .price{color:#55e6a5;font-weight:bold}
-footer{
- text-align:center;padding:25px;
- background:#111a2b;color:#aaa
-}
-input,select{
- width:100%;padding:12px;margin:8px 0;
- background:#080d18;color:white;
- border:1px solid #45536b;border-radius:7px
-}
-button{cursor:pointer;border:0}
+input{width:100%;padding:12px;margin:8px 0;background:#080d18;color:white;border:1px solid #45536b;border-radius:7px}
+button:disabled{opacity:.5}
+.msg{min-height:22px;margin-top:10px;overflow-wrap:anywhere}
+.small{font-size:13px;color:#b8c3d6;line-height:1.5}
+.qr{display:block;width:220px;height:220px;max-width:100%;margin:18px auto;background:white;padding:8px;border-radius:8px}
+footer{text-align:center;padding:25px;background:#111a2b;color:#aaa}
 </style>
 </head>
 <body>
@@ -68,6 +43,7 @@ button{cursor:pointer;border:0}
 <a href="#matches">Matches</a>
 <a href="#register">Register</a>
 <a href="#login">Login</a>
+<a href="#payment">Payment</a>
 </nav>
 
 <div class="hero" id="home">
@@ -112,28 +88,60 @@ button{cursor:pointer;border:0}
 <section id="register">
 <h2>PLAYER REGISTRATION</h2>
 <div class="card">
-<input type="text" placeholder="Player Name">
-<input type="text" placeholder="Free Fire UID">
-<input type="tel" placeholder="Mobile Number">
-<input type="email" placeholder="Email Address">
-<button class="btn" onclick="alert('Registration backend is not connected yet.')">Register</button>
+<form id="registerForm">
+<input id="playerName" type="text" placeholder="Player Name" required maxlength="60">
+<input id="playerUid" type="text" placeholder="Free Fire UID" required maxlength="30">
+<input id="playerMobile" type="tel" placeholder="Mobile Number" required maxlength="15">
+<input id="regEmail" type="email" placeholder="Email Address" required>
+<input id="regPassword" type="password" placeholder="Create Password (minimum 6 characters)" minlength="6" required>
+<button class="btn" id="regButton" type="submit">Create Account</button>
+</form>
+<p id="regMessage" class="msg" aria-live="polite"></p>
+<p class="small">Registration creates your Firebase Authentication account. Player UID and mobile are not yet stored in the database.</p>
 </div>
 </section>
 
 <section id="login">
 <h2>PLAYER LOGIN</h2>
 <div class="card">
-<input type="email" placeholder="Email">
-<input type="password" placeholder="Password">
-<button class="btn" onclick="alert('Firebase Authentication is not connected yet.')">Login</button>
+<form id="loginForm">
+<input id="loginEmail" type="email" placeholder="Email Address" required>
+<input id="loginPassword" type="password" placeholder="Password" required>
+<button class="btn" id="loginButton" type="submit">Login</button>
+</form>
+<p id="loginMessage" class="msg" aria-live="polite"></p>
+<div id="accountPanel" hidden>
+<p id="accountName"></p>
+<button class="btn" id="logoutButton" type="button">Logout</button>
+</div>
 </div>
 </section>
 
 <section id="payment">
 <h2>PAYMENT</h2>
 <div class="card">
-<p>UPI / Razorpay payment integration will be activated after secure server verification.</p>
-<p class="price">Payment is currently disabled.</p>
+<h3>Pay using UPI or QR Code</h3>
+<p>UPI ID: <strong id="upiText">vishal160442-3@oksbi</strong></p>
+<button class="btn" type="button" id="copyUpi">Copy UPI ID</button>
+
+<label for="payAmount">Enter Amount (₹)</label>
+<input id="payAmount" type="number" min="1" step="1" placeholder="Enter payment amount">
+
+<img id="paymentQr" class="qr" alt="UPI payment QR code">
+
+<p class="small">Scan the QR code using your UPI app. Verify the receiver name and amount in your UPI app before paying.</p>
+<button class="btn" type="button" id="payNow">Open UPI App</button>
+
+<hr style="border-color:#34445f;margin:25px 0">
+
+<h3>Submit Payment Details</h3>
+<form id="paymentForm">
+<input id="paymentUsername" type="text" placeholder="Your FF ARENA Username" required>
+<input id="paymentUtr" type="text" placeholder="UPI Transaction ID / UTR" required maxlength="40">
+<button class="btn" type="submit">Submit for Approval</button>
+</form>
+<p id="paymentMessage" class="msg" aria-live="polite"></p>
+<p class="small">Important: Payment details are not yet sent to the admin or stored. Do not assume your payment is approved until the admin confirms it.</p>
 </div>
 </section>
 
@@ -142,5 +150,143 @@ button{cursor:pointer;border:0}
 <p>Battle • Compete • Win</p>
 </footer>
 
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyCPZWqv0xipaWvbjls5SuklwHKIcTe0kFw",
+  authDomain: "ff-arena-22922.firebaseapp.com",
+  projectId: "ff-arena-22922"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+function message(id, text, error=false) {
+  const el = document.getElementById(id);
+  el.textContent = text;
+  el.style.color = error ? "#ff8888" : "#55e6a5";
+}
+
+function authError(error) {
+  const errors = {
+    "auth/email-already-in-use":"This email is already registered. Please login.",
+    "auth/invalid-email":"Please enter a valid email.",
+    "auth/weak-password":"Password must be at least 6 characters.",
+    "auth/user-not-found":"Account not found. Please register first.",
+    "auth/wrong-password":"Incorrect password.",
+    "auth/invalid-credential":"Email or password is incorrect.",
+    "auth/too-many-requests":"Too many attempts. Please try later.",
+    "auth/network-request-failed":"Internet connection problem.",
+    "auth/operation-not-allowed":"Enable Email/Password in Firebase Authentication."
+  };
+  return errors[error.code] || "Something went wrong. Please try again.";
+}
+
+document.getElementById("registerForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const name = document.getElementById("playerName").value.trim();
+  const email = document.getElementById("regEmail").value.trim();
+  const password = document.getElementById("regPassword").value;
+
+  const btn = document.getElementById("regButton");
+  btn.disabled = true;
+  message("regMessage","Creating account...");
+
+  try {
+    const result = await auth.createUserWithEmailAndPassword(email,password);
+    await result.user.updateProfile({displayName:name});
+    message("regMessage","Account created successfully. You are logged in.");
+    e.target.reset();
+  } catch(error) {
+    message("regMessage",authError(error),true);
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+document.getElementById("loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value;
+  const btn = document.getElementById("loginButton");
+  btn.disabled = true;
+  message("loginMessage","Logging in...");
+
+  try {
+    await auth.signInWithEmailAndPassword(email,password);
+    message("loginMessage","Login successful.");
+    e.target.reset();
+  } catch(error) {
+    message("loginMessage",authError(error),true);
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+document.getElementById("logoutButton").addEventListener("click",async()=>{
+  try {
+    await auth.signOut();
+    message("loginMessage","You are logged out.");
+  } catch(error) {
+    message("loginMessage",authError(error),true);
+  }
+});
+
+auth.onAuthStateChanged(user=>{
+  const panel = document.getElementById("accountPanel");
+  panel.hidden = !user;
+  document.getElementById("accountName").textContent =
+    user ? "Logged in as: " + (user.displayName || user.email) : "";
+});
+
+const UPI_ID = "vishal160442-3@oksbi";
+const amountInput = document.getElementById("payAmount");
+const qr = document.getElementById("paymentQr");
+
+function updateQR() {
+  const amount = Number(amountInput.value);
+  const params = new URLSearchParams({
+    pa: UPI_ID,
+    pn: "FF ARENA",
+    cu: "INR"
+  });
+  if (Number.isFinite(amount) && amount > 0) params.set("am",amount.toFixed(2));
+  const upiLink = "upi://pay?" + params.toString();
+  qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" +
+    encodeURIComponent(upiLink);
+  return upiLink;
+}
+amountInput.addEventListener("input",updateQR);
+updateQR();
+
+document.getElementById("copyUpi").addEventListener("click",async()=>{
+  try {
+    await navigator.clipboard.writeText(UPI_ID);
+    message("paymentMessage","UPI ID copied.");
+  } catch {
+    message("paymentMessage","Please copy this UPI ID manually: " + UPI_ID,true);
+  }
+});
+
+document.getElementById("payNow").addEventListener("click",()=>{
+  const amount = Number(amountInput.value);
+  if (!Number.isFinite(amount) || amount <= 0) {
+    message("paymentMessage","Please enter a valid amount first.",true);
+    return;
+  }
+  const link = updateQR();
+  window.location.href = link;
+});
+
+document.getElementById("paymentForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  message("paymentMessage",
+    "Your details have not been sent. Admin approval backend must be connected first.",
+    true
+  );
+});
+</script>
 </body>
 </html>
