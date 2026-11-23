@@ -1,36 +1,41 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FF ARENA | Gaming Tournaments</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#080d18;color:white;font-family:Arial,sans-serif}
-header{background:#111a2b;padding:17px;text-align:center;border-bottom:2px solid #ff9800}
-header h1{color:#ff9800;margin:0}
-nav{display:flex;justify-content:center;gap:12px;padding:14px;background:#10182a;flex-wrap:wrap;position:sticky;top:0;z-index:5}
-nav a{color:white;text-decoration:none;padding:9px;border-radius:7px}
-nav a:hover{background:#ff9800;color:#111}
-.hero{text-align:center;padding:55px 15px;background:linear-gradient(135deg,#263550,#111827)}
-.hero h2{font-size:32px}
-.hero span,h2{color:#ffae35}
-.btn{display:inline-block;background:#ff9800;color:#111;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:bold;cursor:pointer;border:0;margin:4px}
+body{margin:0;font-family:Arial,sans-serif;color:#fff;background:#05070f;background-image:radial-gradient(circle at 15% 10%,rgba(255,120,0,.28),transparent 40%),radial-gradient(circle at 85% 30%,rgba(120,60,255,.28),transparent 40%),radial-gradient(circle at 50% 100%,rgba(0,180,255,.18),transparent 45%);background-attachment:fixed}
+.glass{background:rgba(255,255,255,.07);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.16);border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,.45)}
+header{padding:18px;text-align:center}
+header h1{margin:0;font-size:30px;letter-spacing:3px;background:linear-gradient(90deg,#ffae35,#ff4d4d);-webkit-background-clip:text;background-clip:text;color:transparent}
+header p{margin:4px 0 0;color:#b8c3d6;font-size:13px}
+nav{display:flex;justify-content:center;gap:8px;padding:10px;flex-wrap:wrap;position:sticky;top:8px;z-index:10;margin:0 10px;background:rgba(10,14,28,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.14);border-radius:16px}
+nav a{color:#fff;text-decoration:none;padding:8px 12px;border-radius:10px;font-size:14px}
+nav a:hover{background:linear-gradient(90deg,#ff9800,#ff4d4d)}
+.profile-icon{display:inline-flex;width:34px;height:34px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(135deg,#ff9800,#8a3ffc);font-weight:bold}
+.hero{margin:18px 10px;padding:50px 18px;text-align:center;border-radius:22px;background:linear-gradient(135deg,rgba(255,120,0,.35),rgba(120,60,255,.35));border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.hero h2{font-size:34px;margin:0 0 8px}
+h2{text-align:center;color:#ffae35}
+.hero span{color:#fff;text-shadow:0 0 18px #ff9800}
+.btn{display:inline-block;background:linear-gradient(90deg,#ff9800,#ff4d4d);color:#111;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:bold;cursor:pointer;border:0;margin:4px;box-shadow:0 0 16px rgba(255,120,0,.45)}
 .btn:disabled{opacity:.5}
-section{padding:28px 16px;max-width:1100px;margin:auto;scroll-margin-top:65px}
-h2{text-align:center}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.card{background:#151f32;padding:20px;border:1px solid #34445f;border-radius:14px;min-width:0}
-.card h3{color:#ffae35}
-.price{color:#55e6a5;font-weight:bold}
-input{width:100%;padding:12px;margin:8px 0;background:#080d18;color:white;border:1px solid #45536b;border-radius:7px}
+.btn.ghost{background:rgba(255,255,255,.12);color:#fff;box-shadow:none}
+section{padding:26px 14px;max-width:1100px;margin:auto;scroll-margin-top:80px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{padding:20px;min-width:0}
+.card h3{color:#ffae35;margin-top:0}
+.tag{display:inline-block;padding:3px 10px;border-radius:20px;background:rgba(85,230,165,.18);color:#55e6a5;font-size:12px;font-weight:bold}
+input,select{width:100%;padding:12px;margin:8px 0;background:rgba(0,0,0,.35);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:10px}
 .msg{min-height:22px;margin-top:10px;overflow-wrap:anywhere}
 .small{font-size:13px;color:#b8c3d6;line-height:1.6}
-.qr{display:block;width:220px;height:220px;max-width:100%;margin:18px auto;background:white;padding:8px;border-radius:8px}
 .hidden{display:none!important}
-.stat{font-size:25px;color:#55e6a5;font-weight:bold}
-footer{text-align:center;padding:25px;background:#111a2b;color:#aaa}
+.stat{font-size:26px;color:#55e6a5;font-weight:bold}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;text-align:left;border-bottom:1px solid rgba(255,255,255,.12);font-size:14px}
+th{color:#ffae35}
+footer{text-align:center;padding:25px;color:#8d99ad}
 </style>
 </head>
 <body>
@@ -40,59 +45,78 @@ footer{text-align:center;padding:25px;background:#111a2b;color:#aaa}
 <p>Battle • Compete • Win</p>
 </header>
 
-<nav>
+<nav class="glass">
 <a href="#home">🏠 Home</a>
 <a href="#matches">🏆 Matches</a>
-<a href="#wallet">💰 Wallet</a>
-<a href="#payment">➕ Add Money</a>
-<a href="#profile">👤 Profile</a>
+<a href="#leaderboard">📊 Leaderboard</a>
+<a href="#squad">👥 Squad</a>
 <a href="#register" id="registerNav">📝 Register</a>
 <a href="#login" id="loginNav">🔐 Login</a>
+<a href="#profile" id="profileNav" class="hidden"><span class="profile-icon" id="navAvatar">P</span></a>
 </nav>
 
 <div class="hero" id="home">
 <h2>WELCOME TO <span>FF ARENA</span></h2>
 <p>Your Battlefield. Your Victory.</p>
 <a class="btn" href="#matches">Explore Matches</a>
+<a class="btn ghost" href="#register">Join Now</a>
 </div>
 
 <section id="modes">
 <h2>🎮 GAME MODES</h2>
 <div class="cards">
-<div class="card"><h3>🎯 BR SURVIVAL</h3><p>Solo • Duo</p></div>
-<div class="card"><h3>⚔️ LONE WOLF</h3><p>1 VS 1</p></div>
-<div class="card"><h3>🛡️ CLASH SQUAD</h3><p>1v1 • 2v2 • 4v4</p></div>
+<div class="card glass"><h3>🎯 BR SURVIVAL</h3><p>Solo • Duo • Squad</p></div>
+<div class="card glass"><h3>⚔️ LONE WOLF</h3><p>1 VS 1</p></div>
+<div class="card glass"><h3>🛡️ CLASH SQUAD</h3><p>1v1 • 2v2 • 4v4</p></div>
 </div>
 </section>
 
 <section id="matches">
 <h2>🏆 UPCOMING TOURNAMENTS</h2>
 <div class="cards">
-<div class="card">
-<h3>BR Survival Solo</h3>
-<p>Entry Fee: ₹10</p>
-<p class="price">₹8 Per Kill</p>
-<button class="btn joinBtn" data-match="br-solo">Join Match</button>
-</div>
-<div class="card">
-<h3>BR Survival Duo</h3>
-<p>Entry Fee: ₹15</p>
-<p class="price">₹10 Per Kill</p>
-<button class="btn joinBtn" data-match="br-duo">Join Match</button>
-</div>
-<div class="card">
-<h3>Clash Squad</h3>
-<p>Entry Fee: To be announced</p>
-<p class="price">Prize Coming Soon</p>
-<button class="btn joinBtn" data-match="clash-squad">Join Match</button>
-</div>
+<div class="card glass"><span class="tag">DAILY</span><h3>BR Survival Solo</h3><p class="small">Slots: 48 • Starts 8:00 PM</p><button class="btn joinBtn" data-match="br-solo">Join Match</button></div>
+<div class="card glass"><span class="tag">DAILY</span><h3>BR Survival Duo</h3><p class="small">Slots: 24 teams • Starts 9:00 PM</p><button class="btn joinBtn" data-match="br-duo">Join Match</button></div>
+<div class="card glass"><span class="tag">DAILY</span><h3>Clash Squad</h3><p class="small">4v4 • Starts 10:00 PM</p><button class="btn joinBtn" data-match="clash-squad">Join Match</button></div>
 </div>
 <p id="matchMessage" class="msg"></p>
 </section>
 
+<section id="joinSection" class="hidden">
+<h2>🎮 MATCH JOIN REQUEST</h2>
+<div class="card glass">
+<h3 id="selectedMatch"></h3>
+<button class="btn" id="confirmJoin">Confirm Join Request</button>
+<button class="btn ghost" id="cancelJoin">Cancel</button>
+<p id="joinMessage" class="msg"></p>
+<div id="roomBox" class="hidden"><p class="small">Room ID: <strong id="roomId"></strong> • Password: <strong id="roomPass"></strong></p></div>
+</div>
+</section>
+
+<section id="leaderboard">
+<h2>📊 LIVE LEADERBOARD</h2>
+<div class="card glass">
+<table>
+<thead><tr><th>Rank</th><th>Player</th><th>Kills</th></tr></thead>
+<tbody id="leaderBody"><tr><td colspan="3" class="small">No results yet.</td></tr></tbody>
+</table>
+</div>
+</section>
+
+<section id="squad">
+<h2>👥 SQUAD AND REFERRAL</h2>
+<div class="card glass">
+<p class="small">Invite friends with your referral code. Login to see it.</p>
+<p>Your code: <strong id="refCode">-</strong></p>
+<button class="btn" id="copyRef">Copy Code</button>
+<input id="squadName" placeholder="Squad name" maxlength="30">
+<button class="btn" id="saveSquad">Save Squad</button>
+<p id="squadMessage" class="msg"></p>
+</div>
+</section>
+
 <section id="register">
 <h2>📝 PLAYER REGISTRATION</h2>
-<div class="card">
+<div class="card glass">
 <form id="registerForm">
 <input id="playerName" placeholder="Player Name" required maxlength="60">
 <input id="playerUid" placeholder="Free Fire UID" required maxlength="30">
@@ -107,78 +131,29 @@ footer{text-align:center;padding:25px;background:#111a2b;color:#aaa}
 
 <section id="login">
 <h2>🔐 PLAYER LOGIN</h2>
-<div class="card">
+<div class="card glass">
 <form id="loginForm">
 <input id="loginEmail" type="email" placeholder="Email Address" required>
 <input id="loginPassword" type="password" placeholder="Password" required>
 <button class="btn" id="loginButton">Login</button>
 </form>
+<p><a href="#" id="forgotLink" style="color:#ffae35">Forgot Password?</a></p>
 <p id="loginMessage" class="msg" aria-live="polite"></p>
 </div>
 </section>
 
 <section id="profile">
 <h2>👤 MY PROFILE</h2>
-<div class="card">
-<div id="loggedOut">
-<p>Please login to view your profile.</p>
-<a class="btn" href="#login">Login Now</a>
-</div>
+<div class="card glass">
+<div id="loggedOut"><p>Please login to view your profile.</p><a class="btn" href="#login">Login Now</a></div>
 <div id="loggedIn" class="hidden">
 <h3 id="profileName">Player</h3>
 <p id="profileEmail"></p>
 <p id="profileUid"></p>
 <p id="profileMobile"></p>
-<p>Account Status: <span class="price">Active</span></p>
+<p>Account Status: <span class="tag">Active</span></p>
 <button class="btn" id="logoutButton">Logout</button>
 </div>
-</div>
-</section>
-
-<section id="wallet">
-<h2>💰 MY WALLET</h2>
-<div class="card">
-<p>Available Balance</p>
-<div class="stat" id="walletBalance">₹0.00</div>
-<p class="small">Your wallet balance is updated only after verified admin approval.</p>
-<a class="btn" href="#payment">➕ Add Money</a>
-<h3>Transaction History</h3>
-<div id="transactionHistory" class="small">Login to view transactions.</div>
-</div>
-</section>
-
-<section id="payment">
-<h2>💳 ADD MONEY</h2>
-<div class="card">
-<h3>Pay using UPI or QR Code</h3>
-<p>UPI ID: <strong id="upiText">vishal160442-3@oksbi</strong></p>
-<button class="btn" type="button" id="copyUpi">Copy UPI ID</button>
-<label for="payAmount">Enter Amount (₹)</label>
-<input id="payAmount" type="number" min="1" max="50000" step="1" placeholder="Enter amount">
-<img id="paymentQr" class="qr" alt="UPI payment QR code">
-<p class="small">Scan the QR code and verify the receiver name and amount in your UPI app before paying.</p>
-<button class="btn" type="button" id="payNow">Open UPI App</button>
-
-<hr style="border-color:#34445f;margin:25px 0">
-
-<h3>Submit UTR for Approval</h3>
-<form id="paymentForm">
-<input id="paymentUtr" placeholder="UPI Transaction ID / UTR" required maxlength="40">
-<button class="btn" id="paymentSubmit" type="submit">Submit Payment</button>
-</form>
-<p id="paymentMessage" class="msg" aria-live="polite"></p>
-<p class="small">Payment will remain Pending until the admin verifies it. Never submit the same UTR twice.</p>
-</div>
-</section>
-
-<section id="joinSection" class="hidden">
-<h2>🎮 MATCH JOIN REQUEST</h2>
-<div class="card">
-<h3 id="selectedMatch"></h3>
-<p id="selectedFee"></p>
-<button class="btn" id="confirmJoin">Confirm Join Request</button>
-<button class="btn" id="cancelJoin">Cancel</button>
-<p id="joinMessage" class="msg"></p>
 </div>
 </section>
 
@@ -203,7 +178,6 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.database();
 
-const UPI_ID = "vishal160442-3@oksbi";
 let currentUser = null;
 let selectedMatchId = null;
 let playerData = {};
@@ -233,44 +207,41 @@ function authError(error){
   return errors[error.code]||"Something went wrong. Please try again.";
 }
 
+function makeRefCode(uid){
+  return "FF"+uid.substring(0,6).toUpperCase();
+}
+
 // REGISTRATION
 document.getElementById("registerForm").addEventListener("submit",async e=>{
   e.preventDefault();
-
   const name=document.getElementById("playerName").value.trim();
   const uid=document.getElementById("playerUid").value.trim();
   const mobile=document.getElementById("playerMobile").value.trim();
   const email=document.getElementById("regEmail").value.trim();
   const password=document.getElementById("regPassword").value;
   const btn=document.getElementById("regButton");
-
   btn.disabled=true;
   msg("regMessage","Creating account...");
-
   try{
     const result=await auth.createUserWithEmailAndPassword(email,password);
     await result.user.updateProfile({displayName:name});
-
     const data={
       name:name,
       freeFireUid:uid,
       mobile:mobile,
       email:email,
-      walletBalance:0,
+      referralCode:makeRefCode(result.user.uid),
       createdAt:firebase.database.ServerValue.TIMESTAMP
     };
-
     try{
       await db.ref("players/"+result.user.uid).set(data);
     }catch(dbError){
       msg("regMessage","Account created, but player data could not be saved. Please contact admin.",true);
       return;
     }
-
     msg("regMessage","Registration successful! Welcome to FF ARENA.");
     e.target.reset();
     showSection("profile");
-
   }catch(error){
     msg("regMessage",authError(error),true);
   }finally{
@@ -284,7 +255,6 @@ document.getElementById("loginForm").addEventListener("submit",async e=>{
   const btn=document.getElementById("loginButton");
   btn.disabled=true;
   msg("loginMessage","Logging in...");
-
   try{
     await auth.signInWithEmailAndPassword(
       document.getElementById("loginEmail").value.trim(),
@@ -300,32 +270,48 @@ document.getElementById("loginForm").addEventListener("submit",async e=>{
   }
 });
 
+// FORGOT PASSWORD
+document.getElementById("forgotLink").addEventListener("click",async e=>{
+  e.preventDefault();
+  const email=document.getElementById("loginEmail").value.trim();
+  if(!email){
+    msg("loginMessage","Enter your email above first, then tap Forgot Password.",true);
+    return;
+  }
+  try{
+    await auth.sendPasswordResetEmail(email);
+    msg("loginMessage","Password reset email sent. Check your inbox.");
+  }catch(error){
+    msg("loginMessage",authError(error),true);
+  }
+});
+
 // AUTH STATE AND PROFILE
 auth.onAuthStateChanged(async user=>{
   currentUser=user;
-
   document.getElementById("loggedOut").classList.toggle("hidden",!!user);
   document.getElementById("loggedIn").classList.toggle("hidden",!user);
   document.getElementById("loginNav").classList.toggle("hidden",!!user);
   document.getElementById("registerNav").classList.toggle("hidden",!!user);
+  document.getElementById("profileNav").classList.toggle("hidden",!user);
 
   if(!user){
     playerData={};
-    document.getElementById("transactionHistory").textContent="Login to view transactions.";
-    document.getElementById("walletBalance").textContent="₹0.00";
+    document.getElementById("refCode").textContent="-";
     return;
   }
 
   try{
     const snapshot=await db.ref("players/"+user.uid).once("value");
     playerData=snapshot.val()||{};
-
-    document.getElementById("profileName").textContent=playerData.name||user.displayName||"Player";
+    const shownName=playerData.name||user.displayName||"Player";
+    document.getElementById("profileName").textContent=shownName;
+    document.getElementById("navAvatar").textContent=shownName.charAt(0).toUpperCase();
     document.getElementById("profileEmail").textContent="Email: "+user.email;
     document.getElementById("profileUid").textContent="Free Fire UID: "+(playerData.freeFireUid||"Not available");
     document.getElementById("profileMobile").textContent="Mobile: "+(playerData.mobile||"Not available");
-
-    loadWallet();
+    document.getElementById("refCode").textContent=playerData.referralCode||makeRefCode(user.uid);
+    if(playerData.squadName) document.getElementById("squadName").value=playerData.squadName;
   }catch(error){
     msg("loginMessage","Could not load profile. Check Database Rules.",true);
   }
@@ -342,140 +328,57 @@ document.getElementById("logoutButton").addEventListener("click",async()=>{
   }
 });
 
-// WALLET
-function loadWallet(){
-  if(!currentUser)return;
-
-  db.ref("players/"+currentUser.uid+"/walletBalance")
-  .on("value",snapshot=>{
-    const balance=Number(snapshot.val())||0;
-    document.getElementById("walletBalance").textContent="₹"+balance.toFixed(2);
-  });
-
-  db.ref("paymentRequests")
-  .orderByChild("uid")
-  .equalTo(currentUser.uid)
-  .on("value",snapshot=>{
-    const history=document.getElementById("transactionHistory");
-    history.innerHTML="";
-
-    if(!snapshot.exists()){
-      history.textContent="No transactions yet.";
-      return;
-    }
-
-    snapshot.forEach(child=>{
-      const p=child.val();
-      const item=document.createElement("p");
-      item.textContent="₹"+(Number(p.amount)||0)+" | UTR: "+(p.utr||"")+" | Status: "+(p.status||"Pending");
-      history.appendChild(item);
-    });
-  });
-}
-
-// UPI AND QR
-const amountInput=document.getElementById("payAmount");
-const qr=document.getElementById("paymentQr");
-
-function updateQR(){
-  const amount=Number(amountInput.value);
-  const params=new URLSearchParams({
-    pa:UPI_ID,
-    pn:"FF ARENA",
-    cu:"INR"
-  });
-
-  if(Number.isFinite(amount)&&amount>0)
-    params.set("am",amount.toFixed(2));
-
-  const link="upi://pay?"+params.toString();
-  qr.src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="+encodeURIComponent(link);
-  return link;
-}
-amountInput.addEventListener("input",updateQR);
-updateQR();
-
-document.getElementById("copyUpi").addEventListener("click",async()=>{
+// SQUAD AND REFERRAL
+document.getElementById("copyRef").addEventListener("click",async()=>{
+  const code=document.getElementById("refCode").textContent;
+  if(code==="-"){msg("squadMessage","Please login first.",true);return;}
   try{
-    await navigator.clipboard.writeText(UPI_ID);
-    msg("paymentMessage","UPI ID copied successfully.");
+    await navigator.clipboard.writeText(code);
+    msg("squadMessage","Referral code copied.");
   }catch(error){
-    msg("paymentMessage","Please copy UPI ID manually: "+UPI_ID,true);
+    msg("squadMessage","Copy manually: "+code,true);
   }
 });
 
-document.getElementById("payNow").addEventListener("click",()=>{
-  const amount=Number(amountInput.value);
-  if(!Number.isFinite(amount)||amount<1||amount>50000){
-    msg("paymentMessage","Enter an amount between ₹1 and ₹50,000.",true);
-    return;
-  }
-  window.location.href=updateQR();
-});
-
-// PAYMENT SUBMISSION
-document.getElementById("paymentForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-
-  if(!currentUser){
-    msg("paymentMessage","Please login before submitting payment.",true);
-    showSection("login");
-    return;
-  }
-
-  const amount=Number(amountInput.value);
-  const utr=document.getElementById("paymentUtr").value.trim();
-  const btn=document.getElementById("paymentSubmit");
-
-  if(!Number.isFinite(amount)||amount<1||amount>50000){
-    msg("paymentMessage","Enter a valid amount first.",true);
-    return;
-  }
-
-  if(!/^[a-zA-Z0-9]{8,40}$/.test(utr)){
-    msg("paymentMessage","Enter a valid UTR / transaction ID.",true);
-    return;
-  }
-
-  btn.disabled=true;
-  msg("paymentMessage","Submitting payment details...");
-
+document.getElementById("saveSquad").addEventListener("click",async()=>{
+  if(!currentUser){msg("squadMessage","Please login first.",true);showSection("login");return;}
+  const name=document.getElementById("squadName").value.trim();
+  if(!name){msg("squadMessage","Enter a squad name.",true);return;}
   try{
-    const duplicate=await db.ref("paymentRequests")
-      .orderByChild("utr").equalTo(utr).once("value");
-
-    if(duplicate.exists()){
-      msg("paymentMessage","This UTR has already been submitted.",true);
-      return;
-    }
-
-    const ref=db.ref("paymentRequests").push();
-    await ref.set({
-      uid:currentUser.uid,
-      email:currentUser.email,
-      amount:amount,
-      utr:utr,
-      status:"Pending",
-      createdAt:firebase.database.ServerValue.TIMESTAMP
-    });
-
-    msg("paymentMessage","UTR submitted successfully! Waiting for admin approval.");
-    e.target.reset();
-    amountInput.value="";
-    updateQR();
-
+    await db.ref("players/"+currentUser.uid+"/squadName").set(name);
+    msg("squadMessage","Squad saved.");
   }catch(error){
-    msg("paymentMessage","Submission failed. Check Database Rules and try again.",true);
-  }finally{
-    btn.disabled=false;
+    msg("squadMessage","Could not save squad. Check Database Rules.",true);
   }
 });
+
+// LEADERBOARD (live)
+db.ref("leaderboard").orderByChild("kills").limitToLast(10).on("value",snapshot=>{
+  const body=document.getElementById("leaderBody");
+  const rows=[];
+  snapshot.forEach(child=>{rows.push(child.val());});
+  rows.reverse();
+  body.innerHTML="";
+  if(rows.length===0){
+    body.innerHTML='<tr><td colspan="3" class="small">No results yet.</td></tr>';
+    return;
+  }
+  rows.forEach((r,i)=>{
+    const tr=document.createElement("tr");
+    [i+1,r.name||"Player",Number(r.kills)||0].forEach(v=>{
+      const td=document.createElement("td");
+      td.textContent=v;
+      tr.appendChild(td);
+    });
+    body.appendChild(tr);
+  });
+},()=>{});
 
 // MATCHES
 const matches={
-  "br-solo":{name:"BR Survival Solo",fee:10},
-  "br-duo":{name:"BR Survival Duo",fee:15},
-  "clash-squad":{name:"Clash Squad",fee:null}
+  "br-solo":{name:"BR Survival Solo"},
+  "br-duo":{name:"BR Survival Duo"},
+  "clash-squad":{name:"Clash Squad"}
 };
 
 document.querySelectorAll(".joinBtn").forEach(btn=>{
@@ -485,14 +388,8 @@ document.querySelectorAll(".joinBtn").forEach(btn=>{
       showSection("login");
       return;
     }
-
     selectedMatchId=btn.dataset.match;
-    const match=matches[selectedMatchId];
-
-    document.getElementById("selectedMatch").textContent=match.name;
-    document.getElementById("selectedFee").textContent=
-      match.fee===null?"Entry Fee: To be announced":"Entry Fee: ₹"+match.fee;
-
+    document.getElementById("selectedMatch").textContent=matches[selectedMatchId].name;
     document.getElementById("joinSection").classList.remove("hidden");
     msg("joinMessage","");
     showSection("joinSection");
@@ -507,25 +404,16 @@ document.getElementById("cancelJoin").addEventListener("click",()=>{
 
 document.getElementById("confirmJoin").addEventListener("click",async()=>{
   if(!currentUser||!selectedMatchId)return;
-
-  const match=matches[selectedMatchId];
-  if(match.fee===null){
-    msg("joinMessage","This match is not open for registration yet.",true);
-    return;
-  }
-
   const btn=document.getElementById("confirmJoin");
   btn.disabled=true;
-
   try{
-    const existing=await db.ref("matchJoins/"+selectedMatchId+"/"+currentUser.uid).once("value");
-
+    const path="matchJoins/"+selectedMatchId+"/"+currentUser.uid;
+    const existing=await db.ref(path).once("value");
     if(existing.exists()){
       msg("joinMessage","You have already submitted a join request.",true);
       return;
     }
-
-    await db.ref("matchJoins/"+selectedMatchId+"/"+currentUser.uid).set({
+    await db.ref(path).set({
       uid:currentUser.uid,
       name:playerData.name||currentUser.displayName||"Player",
       email:currentUser.email,
@@ -533,8 +421,7 @@ document.getElementById("confirmJoin").addEventListener("click",async()=>{
       status:"Pending",
       createdAt:firebase.database.ServerValue.TIMESTAMP
     });
-
-    msg("joinMessage","Join request submitted! Awaiting confirmation.");
+    msg("joinMessage","Join request submitted! Room ID will appear here after confirmation.");
   }catch(error){
     msg("joinMessage","Could not submit request. Check Database Rules.",true);
   }finally{
