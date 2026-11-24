@@ -6,36 +6,37 @@
 <title>FF ARENA | Gaming Tournaments</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;color:#fff;background:#05070f;background-image:radial-gradient(circle at 15% 10%,rgba(255,120,0,.28),transparent 40%),radial-gradient(circle at 85% 30%,rgba(120,60,255,.28),transparent 40%),radial-gradient(circle at 50% 100%,rgba(0,180,255,.18),transparent 45%);background-attachment:fixed}
-.glass{background:rgba(255,255,255,.07);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.16);border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,.45)}
+body{margin:0;font-family:Arial,sans-serif;color:#fff;background:#05070f;background-image:radial-gradient(circle at 15% 10%,rgba(255,120,0,.28),transparent 40%),radial-gradient(circle at 85% 30%,rgba(120,60,255,.28),transparent 40%);background-attachment:fixed}
+.glass{background:rgba(255,255,255,.07);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.16);border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,.35)}
 header{padding:18px;text-align:center}
-header h1{margin:0;font-size:30px;letter-spacing:3px;background:linear-gradient(90deg,#ffae35,#ff4d4d);-webkit-background-clip:text;background-clip:text;color:transparent}
-header p{margin:4px 0 0;color:#b8c3d6;font-size:13px}
-nav{display:flex;justify-content:center;gap:8px;padding:10px;flex-wrap:wrap;position:sticky;top:8px;z-index:10;margin:0 10px;background:rgba(10,14,28,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.14);border-radius:16px}
+header h1{margin:0;font-size:30px;letter-spacing:3px;color:#ffae35}
+header p,.small{color:#b8c3d6;font-size:13px;line-height:1.6}
+nav{display:flex;justify-content:center;gap:8px;padding:10px;flex-wrap:wrap;position:sticky;top:8px;z-index:10;margin:0 10px;background:rgba(10,14,28,.8)}
 nav a{color:#fff;text-decoration:none;padding:8px 12px;border-radius:10px;font-size:14px}
-nav a:hover{background:linear-gradient(90deg,#ff9800,#ff4d4d)}
-.profile-icon{display:inline-flex;width:34px;height:34px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(135deg,#ff9800,#8a3ffc);font-weight:bold}
-.hero{margin:18px 10px;padding:50px 18px;text-align:center;border-radius:22px;background:linear-gradient(135deg,rgba(255,120,0,.35),rgba(120,60,255,.35));border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-.hero h2{font-size:34px;margin:0 0 8px}
+nav a:hover{background:#ff9800}
+.hero{margin:18px 10px;padding:50px 18px;text-align:center;border-radius:22px;background:linear-gradient(135deg,rgba(255,120,0,.35),rgba(120,60,255,.35))}
 h2{text-align:center;color:#ffae35}
-.hero span{color:#fff;text-shadow:0 0 18px #ff9800}
-.btn{display:inline-block;background:linear-gradient(90deg,#ff9800,#ff4d4d);color:#111;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:bold;cursor:pointer;border:0;margin:4px;box-shadow:0 0 16px rgba(255,120,0,.45)}
-.btn:disabled{opacity:.5}
-.btn.ghost{background:rgba(255,255,255,.12);color:#fff;box-shadow:none}
+.btn,button{display:inline-block;background:linear-gradient(90deg,#ff9800,#ff4d4d);color:#111;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:bold;cursor:pointer;border:0;margin:4px}
+.btn.ghost,button.secondary{background:rgba(255,255,255,.14);color:#fff}
+.danger{background:#a83242;color:white}
 section{padding:26px 14px;max-width:1100px;margin:auto;scroll-margin-top:80px}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
-.card{padding:20px;min-width:0}
+.card{padding:20px;min-width:0;margin:10px 0}
 .card h3{color:#ffae35;margin-top:0}
-.tag{display:inline-block;padding:3px 10px;border-radius:20px;background:rgba(85,230,165,.18);color:#55e6a5;font-size:12px;font-weight:bold}
-input,select{width:100%;padding:12px;margin:8px 0;background:rgba(0,0,0,.35);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:10px}
+input,select{width:100%;padding:12px;margin:8px 0;background:#101728;color:#fff;border:1px solid #46506a;border-radius:10px}
 .msg{min-height:22px;margin-top:10px;overflow-wrap:anywhere}
-.small{font-size:13px;color:#b8c3d6;line-height:1.6}
 .hidden{display:none!important}
-.stat{font-size:26px;color:#55e6a5;font-weight:bold}
+.tag{display:inline-block;padding:3px 10px;border-radius:20px;background:rgba(85,230,165,.18);color:#55e6a5;font-size:12px;font-weight:bold}
 table{width:100%;border-collapse:collapse}
 th,td{padding:10px;text-align:left;border-bottom:1px solid rgba(255,255,255,.12);font-size:14px}
 th{color:#ffae35}
 footer{text-align:center;padding:25px;color:#8d99ad}
+.item{border:1px solid #354056;border-radius:12px;padding:13px;margin:10px 0;overflow-wrap:anywhere}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.row>*{flex:1}
+.scroll{overflow:auto}
+#adminPanel{border:1px solid rgba(255,174,53,.5);padding:14px;border-radius:18px;margin:20px auto;max-width:1100px}
 </style>
 </head>
 <body>
@@ -52,14 +53,16 @@ footer{text-align:center;padding:25px;color:#8d99ad}
 <a href="#squad">👥 Squad</a>
 <a href="#register" id="registerNav">📝 Register</a>
 <a href="#login" id="loginNav">🔐 Login</a>
-<a href="#profile" id="profileNav" class="hidden"><span class="profile-icon" id="navAvatar">P</span></a>
+<a href="#profile" id="profileNav" class="hidden">👤 Profile</a>
+<a href="#adminPanel">🛡️ Admin</a>
 </nav>
 
 <div class="hero" id="home">
-<h2>WELCOME TO <span>FF ARENA</span></h2>
+<h2>WELCOME TO FF ARENA</h2>
 <p>Your Battlefield. Your Victory.</p>
 <a class="btn" href="#matches">Explore Matches</a>
 <a class="btn ghost" href="#register">Join Now</a>
+<a class="btn" href="app.apk" download>📲 Download APK</a>
 </div>
 
 <section id="modes">
@@ -74,9 +77,24 @@ footer{text-align:center;padding:25px;color:#8d99ad}
 <section id="matches">
 <h2>🏆 UPCOMING TOURNAMENTS</h2>
 <div class="cards">
-<div class="card glass"><span class="tag">DAILY</span><h3>BR Survival Solo</h3><p class="small">Slots: 48 • Starts 8:00 PM</p><button class="btn joinBtn" data-match="br-solo">Join Match</button></div>
-<div class="card glass"><span class="tag">DAILY</span><h3>BR Survival Duo</h3><p class="small">Slots: 24 teams • Starts 9:00 PM</p><button class="btn joinBtn" data-match="br-duo">Join Match</button></div>
-<div class="card glass"><span class="tag">DAILY</span><h3>Clash Squad</h3><p class="small">4v4 • Starts 10:00 PM</p><button class="btn joinBtn" data-match="clash-squad">Join Match</button></div>
+<div class="card glass">
+<span class="tag">DAILY</span>
+<h3>BR Survival Solo</h3>
+<p class="small">Slots: 48 • Starts 8:00 PM</p>
+<button class="btn joinBtn" data-match="br-solo">Join Match</button>
+</div>
+<div class="card glass">
+<span class="tag">DAILY</span>
+<h3>BR Survival Duo</h3>
+<p class="small">Slots: 24 teams • Starts 9:00 PM</p>
+<button class="btn joinBtn" data-match="br-duo">Join Match</button>
+</div>
+<div class="card glass">
+<span class="tag">DAILY</span>
+<h3>Clash Squad</h3>
+<p class="small">4v4 • Starts 10:00 PM</p>
+<button class="btn joinBtn" data-match="clash-squad">Join Match</button>
+</div>
 </div>
 <p id="matchMessage" class="msg"></p>
 </section>
@@ -88,7 +106,9 @@ footer{text-align:center;padding:25px;color:#8d99ad}
 <button class="btn" id="confirmJoin">Confirm Join Request</button>
 <button class="btn ghost" id="cancelJoin">Cancel</button>
 <p id="joinMessage" class="msg"></p>
-<div id="roomBox" class="hidden"><p class="small">Room ID: <strong id="roomId"></strong> • Password: <strong id="roomPass"></strong></p></div>
+<div id="roomBox" class="hidden">
+<p class="small">Room ID: <strong id="roomId"></strong> • Password: <strong id="roomPass"></strong></p>
+</div>
 </div>
 </section>
 
@@ -97,7 +117,9 @@ footer{text-align:center;padding:25px;color:#8d99ad}
 <div class="card glass">
 <table>
 <thead><tr><th>Rank</th><th>Player</th><th>Kills</th></tr></thead>
-<tbody id="leaderBody"><tr><td colspan="3" class="small">No results yet.</td></tr></tbody>
+<tbody id="leaderBody">
+<tr><td colspan="3">No results yet.</td></tr>
+</tbody>
 </table>
 </div>
 </section>
@@ -125,7 +147,7 @@ footer{text-align:center;padding:25px;color:#8d99ad}
 <input id="regPassword" type="password" placeholder="Create Password (minimum 6 characters)" minlength="6" required>
 <button class="btn" id="regButton">Create Account</button>
 </form>
-<p id="regMessage" class="msg" aria-live="polite"></p>
+<p id="regMessage" class="msg"></p>
 </div>
 </section>
 
@@ -138,14 +160,17 @@ footer{text-align:center;padding:25px;color:#8d99ad}
 <button class="btn" id="loginButton">Login</button>
 </form>
 <p><a href="#" id="forgotLink" style="color:#ffae35">Forgot Password?</a></p>
-<p id="loginMessage" class="msg" aria-live="polite"></p>
+<p id="loginMessage" class="msg"></p>
 </div>
 </section>
 
 <section id="profile">
 <h2>👤 MY PROFILE</h2>
 <div class="card glass">
-<div id="loggedOut"><p>Please login to view your profile.</p><a class="btn" href="#login">Login Now</a></div>
+<div id="loggedOut">
+<p>Please login to view your profile.</p>
+<a class="btn" href="#login">Login Now</a>
+</div>
 <div id="loggedIn" class="hidden">
 <h3 id="profileName">Player</h3>
 <p id="profileEmail"></p>
@@ -153,6 +178,63 @@ footer{text-align:center;padding:25px;color:#8d99ad}
 <p id="profileMobile"></p>
 <p>Account Status: <span class="tag">Active</span></p>
 <button class="btn" id="logoutButton">Logout</button>
+</div>
+</div>
+</section>
+
+<!-- ADMIN PANEL -->
+<section id="adminPanel" class="glass">
+<h2>🛡️ FF ARENA ADMIN PANEL</h2>
+
+<div id="adminLoginBox" class="card">
+<p class="small">Admin account Firebase Authentication mein pehle se bana hona chahiye.</p>
+<form id="adminLoginForm">
+<input id="adminEmail" type="email" placeholder="Admin email" required>
+<input id="adminPassword" type="password" placeholder="Admin password" required>
+<button class="btn">Admin Login</button>
+</form>
+<p id="adminLoginMsg" class="msg"></p>
+</div>
+
+<div id="adminDashboard" class="hidden">
+<div class="row">
+<b id="adminIdentity"></b>
+<button class="secondary" id="adminRefresh">Refresh Data</button>
+<button class="danger" id="adminLogout">Logout Admin</button>
+</div>
+
+<div class="card">
+<h3>Registered Players</h3>
+<div id="playersList">Loading...</div>
+</div>
+
+<div class="card">
+<h3>Match Join Requests</h3>
+<div id="requestsList">Loading...</div>
+</div>
+
+<div class="card">
+<h3>Room Details</h3>
+<select id="roomMatch">
+<option value="br-solo">BR Survival Solo</option>
+<option value="br-duo">BR Survival Duo</option>
+<option value="clash-squad">Clash Squad</option>
+</select>
+<input id="roomIdInput" placeholder="Room ID">
+<input id="roomPassInput" placeholder="Room Password">
+<button class="btn" id="saveRoom">Save Room Details</button>
+<p id="roomMsg" class="msg"></p>
+</div>
+
+<div class="card">
+<h3>Leaderboard Update</h3>
+<div class="grid">
+<input id="lbUid" placeholder="Player UID / database key">
+<input id="lbName" placeholder="Player name">
+<input id="lbKills" type="number" min="0" placeholder="Kills">
+</div>
+<button class="btn" id="saveLb">Save Leaderboard Entry</button>
+<p id="lbMsg" class="msg"></p>
 </div>
 </div>
 </section>
@@ -168,13 +250,17 @@ footer{text-align:center;padding:25px;color:#8d99ad}
 
 <script>
 const firebaseConfig = {
-  apiKey: "AIzaSyCPZWqv0xipaWvbjls5SuklwHKIcTe0kFw",
-  authDomain: "ff-arena-22922.firebaseapp.com",
-  databaseURL: "https://ff-arena-22922-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "ff-arena-22922"
+apiKey: "AIzaSyCPZWqv0xipaWvbjls5SuklwHKIcTe0kFw",
+authDomain: "ff-arena-22922.firebaseapp.com",
+databaseURL: "https://ff-arena-22922-default-rtdb.asia-southeast1.firebasedatabase.app",
+projectId: "ff-arena-22922"
 };
 
+// Yahan apna Firebase Admin email daalein:
+const ADMIN_EMAIL = "YOUR_ADMIN_EMAIL_HERE";
+
 firebase.initializeApp(firebaseConfig);
+
 const auth = firebase.auth();
 const db = firebase.database();
 
@@ -182,252 +268,492 @@ let currentUser = null;
 let selectedMatchId = null;
 let playerData = {};
 
+const $ = id => document.getElementById(id);
+
 function msg(id,text,error=false){
-  const el=document.getElementById(id);
-  el.textContent=text;
-  el.style.color=error?"#ff8888":"#55e6a5";
+$(id).textContent = text;
+$(id).style.color = error ? "#ff8888" : "#55e6a5";
 }
 
 function showSection(id){
-  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+$(id).scrollIntoView({behavior:"smooth"});
 }
 
-function authError(error){
-  const errors={
-    "auth/email-already-in-use":"Email already registered. Please login.",
-    "auth/invalid-email":"Invalid email address.",
-    "auth/weak-password":"Password must be at least 6 characters.",
-    "auth/user-not-found":"Account not found.",
-    "auth/wrong-password":"Incorrect password.",
-    "auth/invalid-credential":"Email or password is incorrect.",
-    "auth/too-many-requests":"Too many attempts. Try later.",
-    "auth/network-request-failed":"Internet connection problem.",
-    "auth/operation-not-allowed":"Enable Email/Password in Firebase Authentication."
-  };
-  return errors[error.code]||"Something went wrong. Please try again.";
+function authError(e){
+const m = {
+"auth/email-already-in-use":"Email already registered. Please login.",
+"auth/invalid-email":"Invalid email address.",
+"auth/weak-password":"Password must be at least 6 characters.",
+"auth/user-not-found":"Account not found.",
+"auth/wrong-password":"Incorrect password.",
+"auth/invalid-credential":"Email or password is incorrect.",
+"auth/too-many-requests":"Too many attempts. Try later.",
+"auth/network-request-failed":"Internet connection problem.",
+"auth/operation-not-allowed":"Enable Email/Password in Firebase Authentication."
+};
+return m[e.code] || "Something went wrong. Please try again.";
 }
 
 function makeRefCode(uid){
-  return "FF"+uid.substring(0,6).toUpperCase();
+return "FF" + uid.substring(0,6).toUpperCase();
 }
 
-// REGISTRATION
-document.getElementById("registerForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-  const name=document.getElementById("playerName").value.trim();
-  const uid=document.getElementById("playerUid").value.trim();
-  const mobile=document.getElementById("playerMobile").value.trim();
-  const email=document.getElementById("regEmail").value.trim();
-  const password=document.getElementById("regPassword").value;
-  const btn=document.getElementById("regButton");
-  btn.disabled=true;
-  msg("regMessage","Creating account...");
-  try{
-    const result=await auth.createUserWithEmailAndPassword(email,password);
-    await result.user.updateProfile({displayName:name});
-    const data={
-      name:name,
-      freeFireUid:uid,
-      mobile:mobile,
-      email:email,
-      referralCode:makeRefCode(result.user.uid),
-      createdAt:firebase.database.ServerValue.TIMESTAMP
-    };
-    try{
-      await db.ref("players/"+result.user.uid).set(data);
-    }catch(dbError){
-      msg("regMessage","Account created, but player data could not be saved. Please contact admin.",true);
-      return;
-    }
-    msg("regMessage","Registration successful! Welcome to FF ARENA.");
-    e.target.reset();
-    showSection("profile");
-  }catch(error){
-    msg("regMessage",authError(error),true);
-  }finally{
-    btn.disabled=false;
-  }
+// PLAYER REGISTRATION
+$("registerForm").addEventListener("submit",async e=>{
+e.preventDefault();
+
+const name = $("playerName").value.trim();
+const uid = $("playerUid").value.trim();
+const mobile = $("playerMobile").value.trim();
+const email = $("regEmail").value.trim();
+const password = $("regPassword").value;
+
+const b = $("regButton");
+b.disabled = true;
+msg("regMessage","Creating account...");
+
+try{
+const r = await auth.createUserWithEmailAndPassword(email,password);
+
+await r.user.updateProfile({displayName:name});
+
+const data = {
+name,
+freeFireUid:uid,
+mobile,
+email,
+referralCode:makeRefCode(r.user.uid),
+createdAt:firebase.database.ServerValue.TIMESTAMP
+};
+
+await db.ref("players/"+r.user.uid).set(data);
+
+msg("regMessage","Registration successful!");
+e.target.reset();
+showSection("profile");
+
+}catch(err){
+msg("regMessage",authError(err),true);
+}finally{
+b.disabled = false;
+}
 });
 
-// LOGIN
-document.getElementById("loginForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-  const btn=document.getElementById("loginButton");
-  btn.disabled=true;
-  msg("loginMessage","Logging in...");
-  try{
-    await auth.signInWithEmailAndPassword(
-      document.getElementById("loginEmail").value.trim(),
-      document.getElementById("loginPassword").value
-    );
-    msg("loginMessage","Login successful!");
-    e.target.reset();
-    showSection("profile");
-  }catch(error){
-    msg("loginMessage",authError(error),true);
-  }finally{
-    btn.disabled=false;
-  }
+// PLAYER LOGIN
+$("loginForm").addEventListener("submit",async e=>{
+e.preventDefault();
+
+const b = $("loginButton");
+b.disabled = true;
+msg("loginMessage","Logging in...");
+
+try{
+await auth.signInWithEmailAndPassword(
+$("loginEmail").value.trim(),
+$("loginPassword").value
+);
+
+msg("loginMessage","Login successful!");
+e.target.reset();
+showSection("profile");
+
+}catch(err){
+msg("loginMessage",authError(err),true);
+}finally{
+b.disabled = false;
+}
 });
 
 // FORGOT PASSWORD
-document.getElementById("forgotLink").addEventListener("click",async e=>{
-  e.preventDefault();
-  const email=document.getElementById("loginEmail").value.trim();
-  if(!email){
-    msg("loginMessage","Enter your email above first, then tap Forgot Password.",true);
-    return;
-  }
-  try{
-    await auth.sendPasswordResetEmail(email);
-    msg("loginMessage","Password reset email sent. Check your inbox.");
-  }catch(error){
-    msg("loginMessage",authError(error),true);
-  }
+$("forgotLink").addEventListener("click",async e=>{
+e.preventDefault();
+
+const email = $("loginEmail").value.trim();
+
+if(!email){
+msg("loginMessage","Enter your email above first.",true);
+return;
+}
+
+try{
+await auth.sendPasswordResetEmail(email);
+msg("loginMessage","Password reset email sent.");
+}catch(err){
+msg("loginMessage",authError(err),true);
+}
 });
 
-// AUTH STATE AND PROFILE
+// AUTH STATE
 auth.onAuthStateChanged(async user=>{
-  currentUser=user;
-  document.getElementById("loggedOut").classList.toggle("hidden",!!user);
-  document.getElementById("loggedIn").classList.toggle("hidden",!user);
-  document.getElementById("loginNav").classList.toggle("hidden",!!user);
-  document.getElementById("registerNav").classList.toggle("hidden",!!user);
-  document.getElementById("profileNav").classList.toggle("hidden",!user);
+currentUser = user;
 
-  if(!user){
-    playerData={};
-    document.getElementById("refCode").textContent="-";
-    return;
-  }
+$("loggedOut").classList.toggle("hidden",!!user);
+$("loggedIn").classList.toggle("hidden",!user);
+$("loginNav").classList.toggle("hidden",!!user);
+$("registerNav").classList.toggle("hidden",!!user);
+$("profileNav").classList.toggle("hidden",!user);
 
-  try{
-    const snapshot=await db.ref("players/"+user.uid).once("value");
-    playerData=snapshot.val()||{};
-    const shownName=playerData.name||user.displayName||"Player";
-    document.getElementById("profileName").textContent=shownName;
-    document.getElementById("navAvatar").textContent=shownName.charAt(0).toUpperCase();
-    document.getElementById("profileEmail").textContent="Email: "+user.email;
-    document.getElementById("profileUid").textContent="Free Fire UID: "+(playerData.freeFireUid||"Not available");
-    document.getElementById("profileMobile").textContent="Mobile: "+(playerData.mobile||"Not available");
-    document.getElementById("refCode").textContent=playerData.referralCode||makeRefCode(user.uid);
-    if(playerData.squadName) document.getElementById("squadName").value=playerData.squadName;
-  }catch(error){
-    msg("loginMessage","Could not load profile. Check Database Rules.",true);
-  }
+if(!user){
+playerData = {};
+$("refCode").textContent = "-";
+return;
+}
+
+try{
+const s = await db.ref("players/"+user.uid).once("value");
+playerData = s.val() || {};
+
+const n = playerData.name || user.displayName || "Player";
+
+$("profileName").textContent = n;
+$("profileEmail").textContent = "Email: " + user.email;
+$("profileUid").textContent = "Free Fire UID: " + (playerData.freeFireUid || "Not available");
+$("profileMobile").textContent = "Mobile: " + (playerData.mobile || "Not available");
+$("refCode").textContent = playerData.referralCode || makeRefCode(user.uid);
+
+if(playerData.squadName){
+$("squadName").value = playerData.squadName;
+}
+
+}catch(e){
+msg("loginMessage","Could not load profile. Check Database Rules.",true);
+}
 });
 
 // LOGOUT
-document.getElementById("logoutButton").addEventListener("click",async()=>{
-  try{
-    await auth.signOut();
-    msg("loginMessage","You are logged out.");
-    showSection("home");
-  }catch(error){
-    msg("loginMessage","Logout failed.",true);
-  }
-});
-
-// SQUAD AND REFERRAL
-document.getElementById("copyRef").addEventListener("click",async()=>{
-  const code=document.getElementById("refCode").textContent;
-  if(code==="-"){msg("squadMessage","Please login first.",true);return;}
-  try{
-    await navigator.clipboard.writeText(code);
-    msg("squadMessage","Referral code copied.");
-  }catch(error){
-    msg("squadMessage","Copy manually: "+code,true);
-  }
-});
-
-document.getElementById("saveSquad").addEventListener("click",async()=>{
-  if(!currentUser){msg("squadMessage","Please login first.",true);showSection("login");return;}
-  const name=document.getElementById("squadName").value.trim();
-  if(!name){msg("squadMessage","Enter a squad name.",true);return;}
-  try{
-    await db.ref("players/"+currentUser.uid+"/squadName").set(name);
-    msg("squadMessage","Squad saved.");
-  }catch(error){
-    msg("squadMessage","Could not save squad. Check Database Rules.",true);
-  }
-});
-
-// LEADERBOARD (live)
-db.ref("leaderboard").orderByChild("kills").limitToLast(10).on("value",snapshot=>{
-  const body=document.getElementById("leaderBody");
-  const rows=[];
-  snapshot.forEach(child=>{rows.push(child.val());});
-  rows.reverse();
-  body.innerHTML="";
-  if(rows.length===0){
-    body.innerHTML='<tr><td colspan="3" class="small">No results yet.</td></tr>';
-    return;
-  }
-  rows.forEach((r,i)=>{
-    const tr=document.createElement("tr");
-    [i+1,r.name||"Player",Number(r.kills)||0].forEach(v=>{
-      const td=document.createElement("td");
-      td.textContent=v;
-      tr.appendChild(td);
-    });
-    body.appendChild(tr);
-  });
-},()=>{});
-
-// MATCHES
-const matches={
-  "br-solo":{name:"BR Survival Solo"},
-  "br-duo":{name:"BR Survival Duo"},
-  "clash-squad":{name:"Clash Squad"}
+$("logoutButton").onclick = async()=>{
+await auth.signOut();
+msg("loginMessage","You are logged out.");
+showSection("home");
 };
 
-document.querySelectorAll(".joinBtn").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    if(!currentUser){
-      msg("matchMessage","Please login before joining a match.",true);
-      showSection("login");
-      return;
-    }
-    selectedMatchId=btn.dataset.match;
-    document.getElementById("selectedMatch").textContent=matches[selectedMatchId].name;
-    document.getElementById("joinSection").classList.remove("hidden");
-    msg("joinMessage","");
-    showSection("joinSection");
-  });
+// REFERRAL CODE
+$("copyRef").onclick = async()=>{
+const c = $("refCode").textContent;
+
+if(c === "-"){
+msg("squadMessage","Please login first.",true);
+return;
+}
+
+try{
+await navigator.clipboard.writeText(c);
+msg("squadMessage","Referral code copied.");
+}catch(e){
+msg("squadMessage","Copy manually: "+c,true);
+}
+};
+
+// SAVE SQUAD
+$("saveSquad").onclick = async()=>{
+if(!currentUser){
+msg("squadMessage","Please login first.",true);
+showSection("login");
+return;
+}
+
+const n = $("squadName").value.trim();
+
+if(!n){
+msg("squadMessage","Enter a squad name.",true);
+return;
+}
+
+try{
+await db.ref("players/"+currentUser.uid+"/squadName").set(n);
+msg("squadMessage","Squad saved.");
+}catch(e){
+msg("squadMessage","Could not save squad. Check Database Rules.",true);
+}
+};
+
+// PUBLIC LEADERBOARD
+db.ref("leaderboard").orderByChild("kills").limitToLast(10).on("value",s=>{
+const body = $("leaderBody");
+const rows = [];
+
+s.forEach(c=>rows.push(c.val()));
+rows.reverse();
+
+body.innerHTML = "";
+
+if(!rows.length){
+body.innerHTML = '<tr><td colspan="3">No results yet.</td></tr>';
+return;
+}
+
+rows.forEach((r,i)=>{
+const tr = document.createElement("tr");
+
+[i+1,r.name||"Player",Number(r.kills)||0].forEach(v=>{
+const td = document.createElement("td");
+td.textContent = v;
+tr.appendChild(td);
 });
 
-document.getElementById("cancelJoin").addEventListener("click",()=>{
-  document.getElementById("joinSection").classList.add("hidden");
-  selectedMatchId=null;
-  showSection("matches");
+body.appendChild(tr);
+});
 });
 
-document.getElementById("confirmJoin").addEventListener("click",async()=>{
-  if(!currentUser||!selectedMatchId)return;
-  const btn=document.getElementById("confirmJoin");
-  btn.disabled=true;
-  try{
-    const path="matchJoins/"+selectedMatchId+"/"+currentUser.uid;
-    const existing=await db.ref(path).once("value");
-    if(existing.exists()){
-      msg("joinMessage","You have already submitted a join request.",true);
-      return;
-    }
-    await db.ref(path).set({
-      uid:currentUser.uid,
-      name:playerData.name||currentUser.displayName||"Player",
-      email:currentUser.email,
-      matchId:selectedMatchId,
-      status:"Pending",
-      createdAt:firebase.database.ServerValue.TIMESTAMP
-    });
-    msg("joinMessage","Join request submitted! Room ID will appear here after confirmation.");
-  }catch(error){
-    msg("joinMessage","Could not submit request. Check Database Rules.",true);
-  }finally{
-    btn.disabled=false;
-  }
+// MATCH REQUESTS
+const matches = {
+"br-solo":{name:"BR Survival Solo"},
+"br-duo":{name:"BR Survival Duo"},
+"clash-squad":{name:"Clash Squad"}
+};
+
+document.querySelectorAll(".joinBtn").forEach(b=>{
+b.onclick = ()=>{
+if(!currentUser){
+msg("matchMessage","Please login before joining a match.",true);
+showSection("login");
+return;
+}
+
+selectedMatchId = b.dataset.match;
+$("selectedMatch").textContent = matches[selectedMatchId].name;
+$("joinSection").classList.remove("hidden");
+msg("joinMessage","");
+showSection("joinSection");
+};
 });
+
+$("cancelJoin").onclick = ()=>{
+$("joinSection").classList.add("hidden");
+selectedMatchId = null;
+showSection("matches");
+};
+
+$("confirmJoin").onclick = async()=>{
+if(!currentUser || !selectedMatchId) return;
+
+const b = $("confirmJoin");
+b.disabled = true;
+
+try{
+const path = "matchJoins/"+selectedMatchId+"/"+currentUser.uid;
+const old = await db.ref(path).once("value");
+
+if(old.exists()){
+msg("joinMessage","You have already submitted a join request.",true);
+return;
+}
+
+await db.ref(path).set({
+uid:currentUser.uid,
+name:playerData.name || currentUser.displayName || "Player",
+email:currentUser.email,
+matchId:selectedMatchId,
+status:"Pending",
+createdAt:firebase.database.ServerValue.TIMESTAMP
+});
+
+msg("joinMessage","Join request submitted!");
+
+}catch(e){
+msg("joinMessage","Could not submit request. Check Database Rules.",true);
+}finally{
+b.disabled = false;
+}
+};
+
+// ADMIN PANEL
+function isAdmin(u){
+return !!u &&
+!!u.email &&
+ADMIN_EMAIL !== "YOUR_ADMIN_EMAIL_HERE" &&
+u.email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+}
+
+function safe(v){
+return String(v??"").replace(/[&<>"']/g,c=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
+}[c]));
+}
+
+// ADMIN LOGIN
+$("adminLoginForm").addEventListener("submit",async e=>{
+e.preventDefault();
+
+if(ADMIN_EMAIL === "YOUR_ADMIN_EMAIL_HERE"){
+msg("adminLoginMsg","Code mein ADMIN_EMAIL ko apne Firebase Admin email se replace karein.",true);
+return;
+}
+
+try{
+const c = await auth.signInWithEmailAndPassword(
+$("adminEmail").value.trim(),
+$("adminPassword").value
+);
+
+if(!isAdmin(c.user)){
+await auth.signOut();
+msg("adminLoginMsg","This account is not authorized as Admin.",true);
+}
+
+}catch(err){
+msg("adminLoginMsg",authError(err),true);
+}
+});
+
+// ADMIN AUTH STATE
+auth.onAuthStateChanged(async u=>{
+if(u && isAdmin(u)){
+$("adminLoginBox").classList.add("hidden");
+$("adminDashboard").classList.remove("hidden");
+$("adminIdentity").textContent = u.email;
+await loadAdminData();
+}else{
+$("adminLoginBox").classList.remove("hidden");
+$("adminDashboard").classList.add("hidden");
+}
+});
+
+$("adminLogout").onclick = ()=>auth.signOut();
+$("adminRefresh").onclick = loadAdminData;
+
+async function loadAdminData(){
+if(!isAdmin(auth.currentUser)) return;
+
+await Promise.all([
+loadPlayers(),
+loadRequests()
+]);
+}
+
+// LOAD PLAYERS
+async function loadPlayers(){
+try{
+const s = await db.ref("players").once("value");
+const d = s.val() || {};
+const a = Object.entries(d);
+
+$("playersList").innerHTML = a.length
+? a.map(([k,p])=>`
+<div class="item">
+<b>${safe(p.name||"Player")}</b><br>
+<span class="small">
+UID: ${safe(p.freeFireUid||"-")} ·
+Email: ${safe(p.email||"-")} ·
+Mobile: ${safe(p.mobile||"-")}<br>
+Database ID: ${safe(k)}
+</span>
+</div>`).join("")
+: "No players found.";
+
+}catch(e){
+$("playersList").textContent = "Could not load players. Check Database Rules.";
+}
+}
+
+// LOAD MATCH REQUESTS
+async function loadRequests(){
+try{
+const s = await db.ref("matchJoins").once("value");
+const root = s.val() || {};
+const all = [];
+
+Object.entries(root).forEach(([m,ps])=>{
+Object.entries(ps||{}).forEach(([uid,r])=>{
+all.push({matchId:m,uid,...r});
+});
+});
+
+$("requestsList").innerHTML = all.length
+? all.map(r=>`
+<div class="item">
+<b>${safe(r.name||"Player")}</b> — ${safe(r.matchId)}<br>
+<span class="small">
+Email: ${safe(r.email||"-")} ·
+Status: ${safe(r.status||"Pending")}
+</span><br>
+<button onclick="setJoinStatus('${encodeURIComponent(r.matchId)}','${encodeURIComponent(r.uid)}','Approved')">Approve</button>
+<button class="danger" onclick="setJoinStatus('${encodeURIComponent(r.matchId)}','${encodeURIComponent(r.uid)}','Rejected')">Reject</button>
+</div>`).join("")
+: "No join requests found.";
+
+}catch(e){
+$("requestsList").textContent = "Could not load requests. Check Database Rules.";
+}
+}
+
+// APPROVE / REJECT
+window.setJoinStatus = async(m,u,status)=>{
+if(!isAdmin(auth.currentUser)) return;
+
+try{
+await db.ref(
+"matchJoins/"+decodeURIComponent(m)+"/"+decodeURIComponent(u)+"/status"
+).set(status);
+
+await loadRequests();
+
+}catch(e){
+alert("Could not update. Check Firebase Database Rules.");
+}
+};
+
+// SAVE ROOM DETAILS
+$("saveRoom").onclick = async()=>{
+if(!isAdmin(auth.currentUser)) return;
+
+const m = $("roomMatch").value;
+const roomId = $("roomIdInput").value.trim();
+const roomPass = $("roomPassInput").value.trim();
+
+if(!roomId || !roomPass){
+msg("roomMsg","Room ID aur Password dono bharein.",true);
+return;
+}
+
+try{
+await db.ref("matchRooms/"+m).set({
+roomId,
+roomPass,
+updatedAt:firebase.database.ServerValue.TIMESTAMP
+});
+
+msg("roomMsg","Room details saved.");
+
+}catch(e){
+msg("roomMsg","Save nahi hua. Check Database Rules.",true);
+}
+};
+
+// SAVE LEADERBOARD
+$("saveLb").onclick = async()=>{
+if(!isAdmin(auth.currentUser)) return;
+
+const uid = $("lbUid").value.trim();
+const name = $("lbName").value.trim();
+const kills = Number($("lbKills").value);
+
+if(!uid || !name || !Number.isFinite(kills) || kills<0){
+msg("lbMsg","UID, name aur valid kills bharein.",true);
+return;
+}
+
+try{
+await db.ref("leaderboard/"+uid).set({
+uid,
+name,
+kills
+});
+
+msg("lbMsg","Leaderboard updated.");
+
+$("lbUid").value = "";
+$("lbName").value = "";
+$("lbKills").value = "";
+
+}catch(e){
+msg("lbMsg","Update nahi hua. Check Database Rules.",true);
+}
+};
 </script>
 </body>
 </html>
