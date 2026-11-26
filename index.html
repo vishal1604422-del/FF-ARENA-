@@ -1,592 +1,606 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FF ARENA</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;color:white;background:#05070f;background-image:radial-gradient(circle at 15% 10%,rgba(255,120,0,.28),transparent 40%),radial-gradient(circle at 85% 30%,rgba(120,60,255,.28),transparent 40%);background-attachment:fixed}
-.glass{background:rgba(255,255,255,.07);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.16);border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,.35)}
-header{text-align:center;padding:18px}
-header h1{margin:0;color:#ffae35;letter-spacing:3px}
-header p,.small{color:#b8c3d6;font-size:13px;line-height:1.6}
-nav{display:flex;justify-content:center;gap:8px;padding:10px;flex-wrap:wrap;position:sticky;top:8px;z-index:10;margin:0 10px;background:rgba(10,14,28,.8)}
-nav a{color:white;text-decoration:none;padding:8px 12px;border-radius:10px;font-size:14px}
-nav a:hover{background:#ff9800}
-.hero{margin:18px 10px;padding:50px 18px;text-align:center;border-radius:22px;background:linear-gradient(135deg,rgba(255,120,0,.35),rgba(120,60,255,.35))}
-h2{text-align:center;color:#ffae35}
-.btn,button{display:inline-block;background:linear-gradient(90deg,#ff9800,#ff4d4d);color:#111;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:bold;cursor:pointer;border:0;margin:4px}
-.btn.ghost,button.secondary{background:rgba(255,255,255,.14);color:white}
-.danger{background:#a83242;color:white}
-section{padding:26px 14px;max-width:1100px;margin:auto;scroll-margin-top:80px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
-.card{padding:20px;min-width:0;margin:10px 0}
-.card h3{color:#ffae35;margin-top:0}
-input,select{width:100%;padding:12px;margin:8px 0;background:#101728;color:white;border:1px solid #46506a;border-radius:10px}
-.msg{min-height:22px;margin-top:10px;overflow-wrap:anywhere}
+body{margin:0;background:#080b16;color:#fff;font-family:Arial,sans-serif;padding-bottom:85px}
+header{padding:18px;text-align:center;background:#11182b}
+header h1{color:#ffae35;margin:0}
+.page{display:none;padding:18px;max-width:850px;margin:auto}
+.page.active{display:block}
+.card{background:#151e32;border:1px solid #303b55;border-radius:16px;padding:16px;margin:12px 0}
+h2,h3{color:#ffae35}
+input,select{width:100%;padding:12px;margin:7px 0;border-radius:9px;border:1px solid #46516b;background:#0b1222;color:white}
+button,.btn{border:0;border-radius:10px;padding:11px 16px;background:#ff9d21;color:#111;font-weight:bold;cursor:pointer;margin:4px}
+.secondary{background:#35415b;color:white}
+.danger{background:#d94454;color:white}
+.small{color:#aab5ca;font-size:13px}
 .hidden{display:none!important}
-.tag{display:inline-block;padding:3px 10px;border-radius:20px;background:rgba(85,230,165,.18);color:#55e6a5;font-size:12px;font-weight:bold}
+.msg{font-size:13px;min-height:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.item{padding:12px;border:1px solid #35415b;border-radius:10px;margin:9px 0;overflow-wrap:anywhere}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#11182b;border-top:1px solid #35415b;display:grid;grid-template-columns:repeat(4,1fr);z-index:20;padding:8px 3px}
+.bottom button{background:transparent;color:#b9c4d8;margin:0;padding:8px 2px;font-size:12px}
+.bottom button.active{color:#ffae35}
+.bottom span{display:block;font-size:20px;margin-bottom:4px}
+.qr{display:block;width:min(270px,100%);margin:12px auto;background:white;padding:8px;border-radius:12px}
 table{width:100%;border-collapse:collapse}
-th,td{padding:10px;text-align:left;border-bottom:1px solid rgba(255,255,255,.12);font-size:14px}
+td,th{text-align:left;padding:9px;border-bottom:1px solid #35415b;font-size:13px}
 th{color:#ffae35}
-footer{text-align:center;padding:25px;color:#8d99ad}
-.item{border:1px solid #354056;border-radius:12px;padding:13px;margin:10px 0;overflow-wrap:anywhere}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.row>*{flex:1}
-#adminPanel{border:1px solid rgba(255,174,53,.5);padding:14px;border-radius:18px;margin:20px auto;max-width:1100px}
+a{color:#ffbd58}
 </style>
 </head>
 <body>
 
-<header><h1>🔥 FF ARENA</h1><p>Battle • Compete • Win</p></header>
+<header>
+<h1>🔥 FF ARENA</h1>
+<p class="small">Battle • Compete • Win</p>
+</header>
 
-<nav class="glass">
-<a href="#home">🏠 Home</a>
-<a href="#matches">🏆 Matches</a>
-<a href="#leaderboard">📊 Leaderboard</a>
-<a href="#squad">👥 Squad</a>
-<a href="#register" id="registerNav">📝 Register</a>
-<a href="#login" id="loginNav">🔐 Login</a>
-<a href="#profile" id="profileNav" class="hidden">👤 Profile</a>
-<a href="#adminPanel" id="adminNav">🛡️ Admin</a>
-</nav>
-
-<div class="hero" id="home">
+<!-- HOME -->
+<section id="home" class="page active">
+<div class="card">
 <h2>WELCOME TO FF ARENA</h2>
-<p>Your Battlefield. Your Victory.</p>
-<a class="btn" href="#matches">Explore Matches</a>
-<a class="btn ghost" href="#register">Join Now</a>
-<a class="btn" href="app.apk" download>📲 Download APK</a>
+<p>अपना टूर्नामेंट चुनें और मुकाबले में हिस्सा लें।</p>
+<button onclick="go('matches')">Explore Matches</button>
 </div>
-
-<section id="modes">
-<h2>🎮 GAME MODES</h2>
-<div class="cards">
-<div class="card glass"><h3>🎯 BR SURVIVAL</h3><p>Solo • Duo • Squad</p></div>
-<div class="card glass"><h3>⚔️ LONE WOLF</h3><p>1 VS 1</p></div>
-<div class="card glass"><h3>🛡️ CLASH SQUAD</h3><p>1v1 • 2v2 • 4v4</p></div>
+<div class="grid">
+<div class="card"><h3>🏆 Tournaments</h3><p>Daily Matches</p></div>
+<div class="card"><h3>👑 Winners</h3><p>Player Achievements</p></div>
+</div>
+<div class="card">
+<h3>📢 Announcement</h3>
+<p id="announcement">Welcome to FF ARENA!</p>
 </div>
 </section>
 
-<section id="matches">
-<h2>🏆 UPCOMING TOURNAMENTS</h2>
-<div class="cards">
-<div class="card glass"><span class="tag">DAILY</span><h3>BR Survival Solo</h3><p class="small">Slots: 48 • Starts 8:00 PM</p><button class="joinBtn" data-match="br-solo">Join Match</button></div>
-<div class="card glass"><span class="tag">DAILY</span><h3>BR Survival Duo</h3><p class="small">Slots: 24 teams • Starts 9:00 PM</p><button class="joinBtn" data-match="br-duo">Join Match</button></div>
-<div class="card glass"><span class="tag">DAILY</span><h3>Clash Squad</h3><p class="small">4v4 • Starts 10:00 PM</p><button class="joinBtn" data-match="clash-squad">Join Match</button></div>
+<!-- MATCHES -->
+<section id="matches" class="page">
+<h2>🏆 MATCHES</h2>
+<div class="card">
+<h3>BR Survival Solo</h3>
+<p>48 Slots • 8:00 PM</p>
+<button onclick="joinMatch('br-solo')">Join Match</button>
 </div>
-<p id="matchMessage" class="msg"></p>
-</section>
-
-<section id="joinSection" class="hidden">
-<h2>🎮 MATCH JOIN REQUEST</h2>
-<div class="card glass">
-<h3 id="selectedMatch"></h3>
+<div class="card">
+<h3>BR Survival Duo</h3>
+<p>24 Teams • 9:00 PM</p>
+<button onclick="joinMatch('br-duo')">Join Match</button>
+</div>
+<div class="card">
+<h3>Clash Squad</h3>
+<p>4v4 • 10:00 PM</p>
+<button onclick="joinMatch('clash-squad')">Join Match</button>
+</div>
+<div id="matchDetails" class="card hidden">
+<h3 id="matchTitle">Match Details</h3>
+<p id="matchRules" class="small"></p>
+<p id="slotInfo"></p>
 <button id="confirmJoin">Confirm Join Request</button>
-<button class="ghost" id="cancelJoin">Cancel</button>
-<p id="joinMessage" class="msg"></p>
+<p id="matchMsg" class="msg"></p>
+</div>
+<h3>मेरे मैच</h3>
+<div id="myMatches"></div>
+</section>
+
+<!-- WALLET -->
+<section id="wallet" class="page">
+<h2>💰 MY WALLET</h2>
+<div class="card">
+<p class="small">Available Balance</p>
+<h2>₹<span id="walletBalance">0</span></h2>
+<p class="small">बैलेंस केवल Admin द्वारा पेमेंट Verify होने पर बढ़ेगा।</p>
+</div>
+
+<div class="card">
+<h3>Scan & Pay</h3>
+<img class="qr"
+src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=upi%3A%2F%2Fpay%3Fpa%3Dvishal160442-3%40oksbi%26pn%3DVishal%20Singla%26cu%3DINR"
+alt="FF ARENA UPI QR">
+<h3 style="text-align:center">Vishal Singla</h3>
+<p style="text-align:center">UPI ID: <b id="upiText">vishal160442-3@oksbi</b></p>
+<button onclick="copyUPI()">Copy UPI ID</button>
+</div>
+
+<div class="card">
+<h3>Add Money Request</h3>
+<p class="small">पहले ऊपर दिए QR से पेमेंट करो। फिर नीचे Transaction ID डालकर अनुरोध भेजो।</p>
+<input id="payAmount" type="number" min="1" placeholder="Amount in ₹">
+<input id="payUTR" placeholder="UPI Transaction ID / UTR">
+<button onclick="submitPayment()">Submit Payment Request</button>
+<p id="paymentMsg" class="msg"></p>
+</div>
+
+<div class="card">
+<h3>Payment History</h3>
+<div id="paymentHistory">Login to view history.</div>
 </div>
 </section>
 
-<section id="leaderboard">
-<h2>📊 LIVE LEADERBOARD</h2>
-<div class="card glass">
-<table>
-<thead><tr><th>Rank</th><th>Player</th><th>Kills</th></tr></thead>
-<tbody id="leaderBody"><tr><td colspan="3">No results yet.</td></tr></tbody>
-</table>
-</div>
-</section>
-
-<section id="squad">
-<h2>👥 SQUAD AND REFERRAL</h2>
-<div class="card glass">
-<p class="small">Invite friends with your referral code.</p>
-<p>Your code: <strong id="refCode">-</strong></p>
-<button id="copyRef">Copy Code</button>
-<input id="squadName" placeholder="Squad name" maxlength="30">
-<button id="saveSquad">Save Squad</button>
-<p id="squadMessage" class="msg"></p>
-</div>
-</section>
-
-<section id="register">
-<h2>📝 PLAYER REGISTRATION</h2>
-<div class="card glass">
-<form id="registerForm">
-<input id="playerName" placeholder="Player Name" required maxlength="60">
-<input id="playerUid" placeholder="Free Fire UID" required maxlength="30">
-<input id="playerMobile" type="tel" placeholder="Mobile Number" required maxlength="15">
-<input id="regEmail" type="email" placeholder="Email Address" required>
-<input id="regPassword" type="password" placeholder="Create Password (minimum 6 characters)" minlength="6" required>
-<button id="regButton">Create Account</button>
-</form>
-<p id="regMessage" class="msg"></p>
-</div>
-</section>
-
-<section id="login">
-<h2>🔐 PLAYER LOGIN</h2>
-<div class="card glass">
-<form id="loginForm">
-<input id="loginEmail" type="email" placeholder="Email Address" required>
-<input id="loginPassword" type="password" placeholder="Password" required>
-<button id="loginButton">Login</button>
-</form>
-<p><a href="#" id="forgotLink" style="color:#ffae35">Forgot Password?</a></p>
-<p id="loginMessage" class="msg"></p>
-</div>
-</section>
-
-<section id="profile">
+<!-- PROFILE -->
+<section id="profile" class="page">
 <h2>👤 MY PROFILE</h2>
-<div class="card glass">
-<div id="loggedOut"><p>Please login to view your profile.</p><a class="btn" href="#login">Login Now</a></div>
+<div class="card">
+<div id="loggedOut">
+<p>Profile देखने के लिए Login करें।</p>
+<button onclick="go('login')">Login</button>
+<button onclick="go('register')">Register</button>
+</div>
 <div id="loggedIn" class="hidden">
 <h3 id="profileName">Player</h3>
 <p id="profileEmail"></p>
-<p id="profileUid"></p>
+<p id="profileFFUID"></p>
 <p id="profileMobile"></p>
-<p>Account Status: <span class="tag">Active</span></p>
-<button id="logoutButton">Logout</button>
+<p>Referral Code: <b id="refCode"></b></p>
+<button class="secondary" onclick="copyRef()">Copy Referral</button>
+<button class="danger" onclick="logout()">Logout</button>
 </div>
+</div>
+
+<div class="card">
+<h3>🏆 Match History</h3>
+<div id="matchHistory">Login to view.</div>
+</div>
+
+<div class="card">
+<h3>🥇 My Wins</h3>
+<div id="winHistory">Login to view.</div>
+</div>
+
+<div class="card">
+<h3>💳 Payment History</h3>
+<div id="profilePayments">Login to view.</div>
 </div>
 </section>
 
-<section id="adminPanel" class="glass">
-<h2>🛡️ FF ARENA ADMIN PANEL</h2>
-<div id="adminLoginBox" class="card">
-<p class="small">Admin account Firebase Authentication mein pehle se bana hona chahiye.</p>
-<form id="adminLoginForm">
-<input id="adminEmail" type="email" placeholder="Admin email" value="vishal1604422@gmail.com" required>
-<input id="adminPassword" type="password" placeholder="Admin password" required>
-<button>Admin Login</button>
-</form>
-<p id="adminLoginMsg" class="msg"></p>
+<!-- REGISTER -->
+<section id="register" class="page">
+<h2>📝 REGISTER</h2>
+<div class="card">
+<input id="regName" placeholder="Player Name">
+<input id="regFFUID" placeholder="Free Fire UID">
+<input id="regMobile" placeholder="Mobile Number">
+<input id="regEmail" type="email" placeholder="Email">
+<input id="regPassword" type="password" placeholder="Password (minimum 6 characters)">
+<button onclick="register()">Create Account</button>
+<p id="regMsg" class="msg"></p>
+</div>
+</section>
+
+<!-- LOGIN -->
+<section id="login" class="page">
+<h2>🔐 LOGIN</h2>
+<div class="card">
+<input id="loginEmail" type="email" placeholder="Email">
+<input id="loginPassword" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+<button class="secondary" onclick="forgotPassword()">Forgot Password</button>
+<p id="loginMsg" class="msg"></p>
+</div>
+</section>
+
+<!-- ADMIN -->
+<section id="admin" class="page">
+<h2>🛡️ ADMIN PANEL</h2>
+<div class="card" id="adminLoginBox">
+<input id="adminEmail" type="email" placeholder="Admin Email">
+<input id="adminPassword" type="password" placeholder="Admin Password">
+<button onclick="adminLogin()">Admin Login</button>
+<p id="adminMsg" class="msg"></p>
 </div>
 
 <div id="adminDashboard" class="hidden">
-<div class="row">
-<b id="adminIdentity"></b>
-<button class="secondary" id="adminRefresh">Refresh Data</button>
-<button class="danger" id="adminLogout">Logout Admin</button>
-</div>
-<div class="card"><h3>Registered Players</h3><div id="playersList">Loading...</div></div>
-<div class="card"><h3>Match Join Requests</h3><div id="requestsList">Loading...</div></div>
 <div class="card">
-<h3>Room Details</h3>
+<h3>Players</h3>
+<div id="playersList"></div>
+</div>
+
+<div class="card">
+<h3>Match Requests</h3>
+<div id="requestsList"></div>
+</div>
+
+<div class="card">
+<h3>Payment Verification</h3>
+<div id="adminPayments"></div>
+</div>
+
+<div class="card">
+<h3>Match Room Settings</h3>
 <select id="roomMatch">
-<option value="br-solo">BR Survival Solo</option>
-<option value="br-duo">BR Survival Duo</option>
+<option value="br-solo">BR Solo</option>
+<option value="br-duo">BR Duo</option>
 <option value="clash-squad">Clash Squad</option>
 </select>
-<input id="roomIdInput" placeholder="Room ID">
-<input id="roomPassInput" placeholder="Room Password">
-<button id="saveRoom">Save Room Details</button>
+<input id="roomId" placeholder="Room ID">
+<input id="roomPass" placeholder="Room Password">
+<label class="small">Room Details Release Date & Time</label>
+<input id="releaseTime" type="datetime-local">
+<input id="matchMap" placeholder="Map Name">
+<input id="matchRuleInput" placeholder="Match Rules">
+<button onclick="saveRoom()">Save Match Settings</button>
 <p id="roomMsg" class="msg"></p>
 </div>
+
 <div class="card">
-<h3>Leaderboard Update</h3>
-<div class="grid">
-<input id="lbUid" placeholder="Player UID / database key">
-<input id="lbName" placeholder="Player name">
-<input id="lbKills" type="number" min="0" placeholder="Kills">
+<h3>Winner Entry</h3>
+<input id="winnerUID" placeholder="Winner Player UID (Firebase UID)">
+<input id="winnerName" placeholder="Winner Name">
+<input id="winnerPrize" type="number" placeholder="Winning Prize ₹">
+<button onclick="saveWinner()">Save Winner</button>
+<p id="winnerMsg" class="msg"></p>
 </div>
-<button id="saveLb">Save Leaderboard Entry</button>
+
+<div class="card">
+<h3>Leaderboard</h3>
+<input id="lbUID" placeholder="Player Firebase UID">
+<input id="lbName" placeholder="Player Name">
+<input id="lbKills" type="number" placeholder="Kills">
+<button onclick="saveLeaderboard()">Update Leaderboard</button>
 <p id="lbMsg" class="msg"></p>
 </div>
+<button class="danger" onclick="adminLogout()">Admin Logout</button>
 </div>
 </section>
 
-<footer><p>© 2026 FF ARENA</p><p>Battle • Compete • Win</p></footer>
+<!-- BOTTOM NAV -->
+<nav class="bottom">
+<button class="active" data-page="home" onclick="go('home')"><span>🏠</span>Home</button>
+<button data-page="matches" onclick="go('matches')"><span>🏆</span>Matches</button>
+<button data-page="wallet" onclick="go('wallet')"><span>💰</span>Wallet</button>
+<button data-page="profile" onclick="go('profile')"><span>👤</span>Profile</button>
+</nav>
 
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
 
 <script>
-const firebaseConfig = {
+const firebaseConfig={
 apiKey:"AIzaSyCPZWqv0xipaWvbjls5SuklwHKIcTe0kFw",
 authDomain:"ff-arena-22922.firebaseapp.com",
 databaseURL:"https://ff-arena-22922-default-rtdb.asia-southeast1.firebasedatabase.app",
 projectId:"ff-arena-22922"
 };
 
-const ADMIN_EMAIL = "vishal1604422@gmail.com";
+const ADMIN_UID="WQG4DkR1KCRa2ySPAmMHG0kvmva2";
+const UPI_ID="vishal160442-3@oksbi";
 firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.database();
+const auth=firebase.auth();
+const db=firebase.database();
+const $=id=>document.getElementById(id);
 
-let currentUser = null;
-let selectedMatchId = null;
-let playerData = {};
-
-const $ = id => document.getElementById(id);
-
-function msg(id,text,error=false){
-$(id).textContent = text;
-$(id).style.color = error ? "#ff8888" : "#55e6a5";
-}
-function showSection(id){
-$(id).scrollIntoView({behavior:"smooth"});
-}
-function makeRefCode(uid){
-return "FF"+uid.substring(0,6).toUpperCase();
-}
-function authError(e){
-const m = {
-"auth/email-already-in-use":"Email already registered. Please login.",
-"auth/invalid-email":"Invalid email address.",
-"auth/weak-password":"Password must be at least 6 characters.",
-"auth/user-not-found":"Account not found.",
-"auth/wrong-password":"Incorrect password.",
-"auth/invalid-credential":"Email or password is incorrect.",
-"auth/too-many-requests":"Too many attempts. Try later.",
-"auth/network-request-failed":"Internet connection problem.",
-"auth/operation-not-allowed":"Enable Email/Password in Firebase Authentication."
-};
-return m[e.code] || "Something went wrong. Please try again.";
-}
-
-// PLAYER REGISTRATION
-$("registerForm").addEventListener("submit",async e=>{
-e.preventDefault();
-const name=$("playerName").value.trim();
-const uid=$("playerUid").value.trim();
-const mobile=$("playerMobile").value.trim();
-const email=$("regEmail").value.trim();
-const password=$("regPassword").value;
-const b=$("regButton");
-b.disabled=true;
-msg("regMessage","Creating account...");
-try{
-const r=await auth.createUserWithEmailAndPassword(email,password);
-await r.user.updateProfile({displayName:name});
-const data={
-name,freeFireUid:uid,mobile,email,
-referralCode:makeRefCode(r.user.uid),
-createdAt:firebase.database.ServerValue.TIMESTAMP
-};
-await db.ref("players/"+r.user.uid).set(data);
-msg("regMessage","Registration successful!");
-e.target.reset();
-showSection("profile");
-}catch(err){
-msg("regMessage",authError(err),true);
-}finally{
-b.disabled=false;
-}
-});
-
-// PLAYER LOGIN
-$("loginForm").addEventListener("submit",async e=>{
-e.preventDefault();
-const b=$("loginButton");
-b.disabled=true;
-msg("loginMessage","Logging in...");
-try{
-await auth.signInWithEmailAndPassword($("loginEmail").value.trim(),$("loginPassword").value);
-msg("loginMessage","Login successful!");
-e.target.reset();
-showSection("profile");
-}catch(err){
-msg("loginMessage",authError(err),true);
-}finally{
-b.disabled=false;
-}
-});
-
-$("forgotLink").addEventListener("click",async e=>{
-e.preventDefault();
-const email=$("loginEmail").value.trim();
-if(!email){
-msg("loginMessage","Enter your email above first.",true);
-return;
-}
-try{
-await auth.sendPasswordResetEmail(email);
-msg("loginMessage","Password reset email sent.");
-}catch(err){
-msg("loginMessage",authError(err),true);
-}
-});
-
-// AUTH STATE
-auth.onAuthStateChanged(async user=>{
-currentUser=user;
-$("loggedOut").classList.toggle("hidden",!!user);
-$("loggedIn").classList.toggle("hidden",!user);
-$("loginNav").classList.toggle("hidden",!!user);
-$("registerNav").classList.toggle("hidden",!!user);
-$("profileNav").classList.toggle("hidden",!user);
-
-if(!user){
-playerData={};
-$("refCode").textContent="-";
-return;
-}
-try{
-const s=await db.ref("players/"+user.uid).once("value");
-playerData=s.val()||{};
-const n=playerData.name||user.displayName||"Player";
-$("profileName").textContent=n;
-$("profileEmail").textContent="Email: "+user.email;
-$("profileUid").textContent="Free Fire UID: "+(playerData.freeFireUid||"Not available");
-$("profileMobile").textContent="Mobile: "+(playerData.mobile||"Not available");
-$("refCode").textContent=playerData.referralCode||makeRefCode(user.uid);
-if(playerData.squadName)$("squadName").value=playerData.squadName;
-}catch(e){
-msg("loginMessage","Could not load profile. Check Database Rules.",true);
-}
-});
-
-$("logoutButton").onclick=async()=>{
-await auth.signOut();
-msg("loginMessage","You are logged out.");
-showSection("home");
+let user=null,player={},selectedMatch=null;
+const matchNames={
+"br-solo":"BR Survival Solo",
+"br-duo":"BR Survival Duo",
+"clash-squad":"Clash Squad"
 };
 
-$("copyRef").onclick=async()=>{
-const c=$("refCode").textContent;
-if(c==="-"){
-msg("squadMessage","Please login first.",true);
-return;
+function go(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+$(id).classList.add("active");
+document.querySelectorAll(".bottom button").forEach(b=>
+b.classList.toggle("active",b.dataset.page===id));
+if(user){
+if(id==="wallet")loadPayments();
+if(id==="profile")loadProfileHistory();
+if(id==="matches")loadMyMatches();
 }
-try{
-await navigator.clipboard.writeText(c);
-msg("squadMessage","Referral code copied.");
-}catch(e){
-msg("squadMessage","Copy manually: "+c,true);
-}
-};
-
-$("saveSquad").onclick=async()=>{
-if(!currentUser){
-msg("squadMessage","Please login first.",true);
-showSection("login");
-return;
-}
-const n=$("squadName").value.trim();
-if(!n){
-msg("squadMessage","Enter a squad name.",true);
-return;
-}
-try{
-await db.ref("players/"+currentUser.uid+"/squadName").set(n);
-msg("squadMessage","Squad saved.");
-}catch(e){
-msg("squadMessage","Could not save squad. Check Database Rules.",true);
-}
-};
-
-// LEADERBOARD
-db.ref("leaderboard").orderByChild("kills").limitToLast(10).on("value",s=>{
-const body=$("leaderBody"),rows=[];
-s.forEach(c=>rows.push(c.val()));
-rows.reverse();
-body.innerHTML="";
-if(!rows.length){
-body.innerHTML='<tr><td colspan="3">No results yet.</td></tr>';
-return;
-}
-rows.forEach((r,i)=>{
-const tr=document.createElement("tr");
-[i+1,r.name||"Player",Number(r.kills)||0].forEach(v=>{
-const td=document.createElement("td");
-td.textContent=v;
-tr.appendChild(td);
-});
-body.appendChild(tr);
-});
-},()=>{});
-
-// MATCH JOIN
-const matches={
-"br-solo":{name:"BR Survival Solo"},
-"br-duo":{name:"BR Survival Duo"},
-"clash-squad":{name:"Clash Squad"}
-};
-
-document.querySelectorAll(".joinBtn").forEach(b=>{
-b.onclick=()=>{
-if(!currentUser){
-msg("matchMessage","Please login before joining a match.",true);
-showSection("login");
-return;
-}
-selectedMatchId=b.dataset.match;
-$("selectedMatch").textContent=matches[selectedMatchId].name;
-$("joinSection").classList.remove("hidden");
-msg("joinMessage","");
-showSection("joinSection");
-};
-});
-
-$("cancelJoin").onclick=()=>{
-$("joinSection").classList.add("hidden");
-selectedMatchId=null;
-showSection("matches");
-};
-
-$("confirmJoin").onclick=async()=>{
-if(!currentUser||!selectedMatchId)return;
-const b=$("confirmJoin");
-b.disabled=true;
-try{
-const path="matchJoins/"+selectedMatchId+"/"+currentUser.uid;
-const old=await db.ref(path).once("value");
-if(old.exists()){
-msg("joinMessage","You have already submitted a join request.",true);
-return;
-}
-await db.ref(path).set({
-uid:currentUser.uid,
-name:playerData.name||currentUser.displayName||"Player",
-email:currentUser.email,
-matchId:selectedMatchId,
-status:"Pending",
-createdAt:firebase.database.ServerValue.TIMESTAMP
-});
-msg("joinMessage","Join request submitted!");
-}catch(e){
-msg("joinMessage","Could not submit request. Check Database Rules.",true);
-}finally{
-b.disabled=false;
-}
-};
-
-// ADMIN PANEL
-function isAdmin(u){
-return !!u && !!u.email &&
-u.email.toLowerCase()===ADMIN_EMAIL.toLowerCase();
+window.scrollTo(0,0);
 }
 
-function safe(v){
+function say(id,text,error=false){
+$(id).textContent=text;
+$(id).style.color=error?"#ff7777":"#55e6a5";
+}
+function isAdmin(){return !!user&&user.uid===ADMIN_UID}
+function escapeHTML(v){
 return String(v??"").replace(/[&<>"']/g,c=>({
 "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
 }[c]));
 }
 
-$("adminLoginForm").addEventListener("submit",async e=>{
-e.preventDefault();
+async function register(){
 try{
-const c=await auth.signInWithEmailAndPassword(
-$("adminEmail").value.trim(),
-$("adminPassword").value
-);
-if(!isAdmin(c.user)){
-await auth.signOut();
-msg("adminLoginMsg","This account is not authorized as Admin.",true);
-}
-}catch(err){
-msg("adminLoginMsg",authError(err),true);
-}
+const name=$("regName").value.trim();
+const ffuid=$("regFFUID").value.trim();
+const mobile=$("regMobile").value.trim();
+const email=$("regEmail").value.trim();
+const password=$("regPassword").value;
+if(!name||!ffuid||!mobile||!email||password.length<6)
+throw Error("सभी जानकारी सही भरें। Password कम से कम 6 अक्षर का हो।");
+const c=await auth.createUserWithEmailAndPassword(email,password);
+await c.user.updateProfile({displayName:name});
+await db.ref("players/"+c.user.uid).set({
+name,freeFireUid:ffuid,mobile,email,
+referralCode:"FF"+c.user.uid.substring(0,6).toUpperCase(),
+createdAt:firebase.database.ServerValue.TIMESTAMP
 });
+say("regMsg","Registration successful!");
+go("profile");
+}catch(e){say("regMsg",e.message,true)}
+}
+
+async function login(){
+try{
+await auth.signInWithEmailAndPassword(
+$("loginEmail").value.trim(),$("loginPassword").value);
+say("loginMsg","Login successful!");
+go("profile");
+}catch(e){say("loginMsg",e.message,true)}
+}
+async function forgotPassword(){
+const email=$("loginEmail").value.trim();
+if(!email)return say("loginMsg","पहले Email डालें।",true);
+try{
+await auth.sendPasswordResetEmail(email);
+say("loginMsg","Password reset email भेज दिया गया।");
+}catch(e){say("loginMsg",e.message,true)}
+}
+async function logout(){await auth.signOut();go("home")}
+async function adminLogin(){
+try{
+await auth.signInWithEmailAndPassword(
+$("adminEmail").value.trim(),$("adminPassword").value);
+if(auth.currentUser.uid!==ADMIN_UID){
+await auth.signOut();
+throw Error("यह Admin account अधिकृत नहीं है।");
+}
+say("adminMsg","Admin login successful");
+}catch(e){say("adminMsg",e.message,true)}
+}
+async function adminLogout(){await auth.signOut();go("home")}
 
 auth.onAuthStateChanged(async u=>{
-if(u && isAdmin(u)){
-$("adminLoginBox").classList.add("hidden");
-$("adminDashboard").classList.remove("hidden");
-$("adminIdentity").textContent=u.email;
-await loadAdminData();
-}else{
-$("adminLoginBox").classList.remove("hidden");
-$("adminDashboard").classList.add("hidden");
+user=u;
+$("loggedOut").classList.toggle("hidden",!!u);
+$("loggedIn").classList.toggle("hidden",!u);
+$("adminLoginBox").classList.toggle("hidden",!!u&&isAdmin());
+$("adminDashboard").classList.toggle("hidden",!(u&&isAdmin()));
+if(!u){
+player={};
+$("walletBalance").textContent="0";
+return;
 }
+try{
+const s=await db.ref("players/"+u.uid).once("value");
+player=s.val()||{};
+$("profileName").textContent=player.name||u.displayName||"Player";
+$("profileEmail").textContent="Email: "+u.email;
+$("profileFFUID").textContent="Free Fire UID: "+(player.freeFireUid||"-");
+$("profileMobile").textContent="Mobile: "+(player.mobile||"-");
+$("refCode").textContent=player.referralCode||"FF"+u.uid.slice(0,6);
+$("walletBalance").textContent=Number(player.walletBalance||0);
+if(isAdmin())loadAdmin();
+loadPayments();
+}catch(e){console.error(e)}
 });
 
-$("adminLogout").onclick=()=>auth.signOut();
-$("adminRefresh").onclick=loadAdminData;
-
-async function loadAdminData(){
-if(!isAdmin(auth.currentUser))return;
-await Promise.all([loadPlayers(),loadRequests()]);
+async function copyUPI(){
+try{await navigator.clipboard.writeText(UPI_ID);say("paymentMsg","UPI ID copied!")}
+catch(e){say("paymentMsg",UPI_ID)}
+}
+async function copyRef(){
+if(!user)return;
+try{await navigator.clipboard.writeText($("refCode").textContent)}
+catch(e){}
 }
 
-async function loadPlayers(){
+async function joinMatch(id){
+if(!user){go("login");return}
+selectedMatch=id;
+$("matchDetails").classList.remove("hidden");
+$("matchTitle").textContent=matchNames[id];
 try{
-const s=await db.ref("players").once("value");
+const s=await db.ref("matchSettings/"+id).once("value");
 const d=s.val()||{};
-const a=Object.entries(d);
-$("playersList").innerHTML=a.length?a.map(([k,p])=>
-`<div class="item"><b>${safe(p.name||"Player")}</b><br>
-<span class="small">UID: ${safe(p.freeFireUid||"-")} · Email: ${safe(p.email||"-")} · Mobile: ${safe(p.mobile||"-")}<br>Database ID: ${safe(k)}</span></div>`
-).join(""):"No players found.";
-}catch(e){
-$("playersList").textContent="Could not load players. Check Database Rules.";
+$("matchRules").textContent=
+"Map: "+(d.map||"Admin द्वारा तय होगा")+
+" | Rules: "+(d.rules||"Admin द्वारा तय होंगे");
+const slots=await db.ref("matchSlots/"+id).once("value");
+$("slotInfo").textContent="Reserved Slots: "+Object.keys(slots.val()||{}).length;
+}catch(e){}
 }
-}
+$("confirmJoin").onclick=async()=>{
+if(!user||!selectedMatch)return;
+try{
+const ref=db.ref("matchJoins/"+selectedMatch+"/"+user.uid);
+const old=await ref.once("value");
+if(old.exists())return say("matchMsg","आप पहले से request भेज चुके हैं।",true);
+await ref.set({
+uid:user.uid,
+name:player.name||user.displayName||"Player",
+status:"Pending",
+createdAt:firebase.database.ServerValue.TIMESTAMP
+});
+say("matchMsg","Join request भेज दी गई है।");
+loadMyMatches();
+}catch(e){say("matchMsg","Request नहीं भेजी गई: "+e.message,true)}
+};
 
-async function loadRequests(){
+async function loadMyMatches(){
+if(!user)return;
 try{
 const s=await db.ref("matchJoins").once("value");
-const root=s.val()||{},all=[];
-Object.entries(root).forEach(([m,ps])=>{
-Object.entries(ps||{}).forEach(([uid,r])=>{
-all.push({matchId:m,uid,...r});
+const all=s.val()||{};
+let html="";
+Object.entries(all).forEach(([mid,players])=>{
+const r=players&&players[user.uid];
+if(r)html+=`<div class="item"><b>${escapeHTML(matchNames[mid]||mid)}</b><br>Status: ${escapeHTML(r.status||"Pending")}</div>`;
 });
-});
-$("requestsList").innerHTML=all.length?all.map(r=>
-`<div class="item"><b>${safe(r.name||"Player")}</b> — ${safe(r.matchId)}<br>
-<span class="small">Email: ${safe(r.email||"-")} · Status: ${safe(r.status||"Pending")}</span><br>
-<button onclick="setJoinStatus('${encodeURIComponent(r.matchId)}','${encodeURIComponent(r.uid)}','Approved')">Approve</button>
-<button class="danger" onclick="setJoinStatus('${encodeURIComponent(r.matchId)}','${encodeURIComponent(r.uid)}','Rejected')">Reject</button></div>`
-).join(""):"No join requests found.";
-}catch(e){
-$("requestsList").textContent="Could not load requests. Check Database Rules.";
-}
+$("myMatches").innerHTML=html||"अभी कोई मैच नहीं।";
+}catch(e){$("myMatches").textContent="History load नहीं हुई।"}
 }
 
-window.setJoinStatus=async(m,u,status)=>{
-if(!isAdmin(auth.currentUser))return;
+async function submitPayment(){
+if(!user)return go("login");
+const amount=Number($("payAmount").value);
+const utr=$("payUTR").value.trim();
+if(!Number.isFinite(amount)||amount<=0||!utr)
+return say("paymentMsg","सही Amount और UTR भरें।",true);
 try{
-await db.ref("matchJoins/"+decodeURIComponent(m)+"/"+decodeURIComponent(u)+"/status").set(status);
-await loadRequests();
-}catch(e){
-alert("Could not update. Check Firebase Database Rules.");
+const ref=db.ref("payments/"+user.uid).push();
+await ref.set({
+amount,utr,upi:UPI_ID,status:"Pending",
+createdAt:firebase.database.ServerValue.TIMESTAMP
+});
+say("paymentMsg","Payment request भेज दी गई है। Verification Pending है।");
+$("payAmount").value="";
+$("payUTR").value="";
+loadPayments();
+}catch(e){say("paymentMsg",e.message,true)}
 }
-};
 
-$("saveRoom").onclick=async()=>{
-if(!isAdmin(auth.currentUser))return;
-const m=$("roomMatch").value;
-const roomId=$("roomIdInput").value.trim();
-const roomPass=$("roomPassInput").value.trim();
-if(!roomId||!roomPass){
-msg("roomMsg","Room ID aur Password dono bharein.",true);
-return;
-}
+async function loadPayments(){
+if(!user)return;
 try{
-await db.ref("matchRooms/"+m).set({
-roomId,roomPass,
+const s=await db.ref("payments/"+user.uid).once("value");
+const data=s.val()||{};
+const html=Object.values(data).reverse().map(p=>
+`<div class="item">₹${Number(p.amount)||0} — ${escapeHTML(p.status)}<br>
+<span class="small">UTR: ${escapeHTML(p.utr)} </span></div>`
+).join("")||"कोई Payment History नहीं।";
+$("paymentHistory").innerHTML=html;
+$("profilePayments").innerHTML=html;
+const ps=await db.ref("players/"+user.uid+"/walletBalance").once("value");
+$("walletBalance").textContent=Number(ps.val()||0);
+}catch(e){console.error(e)}
+}
+
+async function loadProfileHistory(){
+await loadMyMatches();
+if(!user)return;
+try{
+const s=await db.ref("matchResults/"+user.uid).once("value");
+const data=s.val()||{};
+$("winHistory").innerHTML=Object.values(data).map(w=>
+`<div class="item">🏆 ${escapeHTML(w.matchName||"Match")} — Prize: ₹${Number(w.prize)||0}</div>`
+).join("")||"अभी कोई जीत दर्ज नहीं है।";
+}catch(e){$("winHistory").textContent="No wins recorded."}
+await loadPayments();
+}
+
+async function saveRoom(){
+if(!isAdmin())return;
+const id=$("roomMatch").value;
+const release=$("releaseTime").value;
+const releaseAt=release?new Date(release).getTime():0;
+try{
+await db.ref("matchSettings/"+id).set({
+map:$("matchMap").value.trim(),
+rules:$("matchRuleInput").value.trim(),
+roomReleaseAt:releaseAt,
 updatedAt:firebase.database.ServerValue.TIMESTAMP
 });
-msg("roomMsg","Room details saved.");
-}catch(e){
-msg("roomMsg","Save nahi hua. Check Database Rules.",true);
+await db.ref("matchRooms/"+id).set({
+roomId:$("roomId").value.trim(),
+roomPass:$("roomPass").value.trim()
+});
+say("roomMsg","Match settings saved.");
+}catch(e){say("roomMsg",e.message,true)}
 }
-};
 
-$("saveLb").onclick=async()=>{
-if(!isAdmin(auth.currentUser))return;
-const uid=$("lbUid").value.trim();
+async function saveWinner(){
+if(!isAdmin())return;
+const uid=$("winnerUID").value.trim();
+const name=$("winnerName").value.trim();
+const prize=Number($("winnerPrize").value);
+if(!uid||!name||prize<0)return say("winnerMsg","सही जानकारी भरें।",true);
+try{
+const id=db.ref("matchResults/"+uid).push().key;
+await db.ref("matchResults/"+uid+"/"+id).set({
+name,prize,matchName:"FF ARENA Match",
+createdAt:firebase.database.ServerValue.TIMESTAMP
+});
+say("winnerMsg","Winner saved.");
+}catch(e){say("winnerMsg",e.message,true)}
+}
+
+async function saveLeaderboard(){
+if(!isAdmin())return;
+const uid=$("lbUID").value.trim();
 const name=$("lbName").value.trim();
 const kills=Number($("lbKills").value);
-if(!uid||!name||!Number.isFinite(kills)||kills<0){
-msg("lbMsg","UID, name aur valid kills bharein.",true);
-return;
-}
+if(!uid||!name||kills<0)return say("lbMsg","सही जानकारी भरें।",true);
 try{
-await db.ref("leaderboard/"+uid).set({uid,name,kills});
-msg("lbMsg","Leaderboard updated.");
-$("lbUid").value="";
-$("lbName").value="";
-$("lbKills").value="";
-}catch(e){
-msg("lbMsg","Update nahi hua. Check Firebase Database Rules.",true);
+await db.ref("leaderboard/"+uid).set({name,kills});
+say("lbMsg","Leaderboard updated.");
+}catch(e){say("lbMsg",e.message,true)}
 }
+
+async function loadAdmin(){
+if(!isAdmin())return;
+try{
+const [ps,rs,pays]=await Promise.all([
+db.ref("players").once("value"),
+db.ref("matchJoins").once("value"),
+db.ref("payments").once("value")
+]);
+const players=ps.val()||{};
+$("playersList").innerHTML=Object.entries(players).map(([uid,p])=>
+`<div class="item">${escapeHTML(p.name)}<br>
+${escapeHTML(p.email)} | ${escapeHTML(p.freeFireUid)}<br>
+UID: ${escapeHTML(uid)}</div>`
+).join("")||"No players";
+
+let requests="";
+Object.entries(rs.val()||{}).forEach(([mid,items])=>{
+Object.entries(items||{}).forEach(([uid,r])=>{
+requests+=`<div class="item">${escapeHTML(r.name)} — ${escapeHTML(matchNames[mid]||mid)}
+<br>Status: ${escapeHTML(r.status)}
+<br><button onclick="approve('${mid}','${uid}','Approved')">Approve</button>
+<button class="danger" onclick="approve('${mid}','${uid}','Rejected')">Reject</button></div>`;
+});
+});
+$("requestsList").innerHTML=requests||"No requests";
+
+let paymentHTML="";
+Object.entries(pays.val()||{}).forEach(([uid,items])=>{
+Object.entries(items||{}).forEach(([pid,p])=>{
+paymentHTML+=`<div class="item">₹${Number(p.amount)||0} | ${escapeHTML(p.utr)}
+<br>Player: ${escapeHTML(uid)} | ${escapeHTML(p.status)}
+<br><button onclick="verifyPayment('${uid}','${pid}','Approved')">Verify</button>
+<button class="danger" onclick="verifyPayment('${uid}','${pid}','Rejected')">Reject</button></div>`;
+});
+});
+$("adminPayments").innerHTML=paymentHTML||"No payments";
+}catch(e){console.error(e)}
+}
+
+window.approve=async(mid,uid,status)=>{
+if(!isAdmin())return;
+try{
+await db.ref("matchJoins/"+mid+"/"+uid+"/status").set(status);
+if(status==="Approved"){
+const slot=db.ref("matchSlots/"+mid).push();
+await slot.set({uid});
+}
+loadAdmin();
+}catch(e){alert(e.message)}
+};
+
+window.verifyPayment=async(uid,pid,status)=>{
+if(!isAdmin())return;
+try{
+const ref=db.ref("payments/"+uid+"/"+pid);
+const s=await ref.once("value");
+const p=s.val();
+if(!p||p.status!=="Pending")return alert("Already processed.");
+const updates={};
+updates["payments/"+uid+"/"+pid+"/status"]=status;
+updates["payments/"+uid+"/"+pid+"/verifiedAt"]=firebase.database.ServerValue.TIMESTAMP;
+if(status==="Approved"){
+const bal=await db.ref("players/"+uid+"/walletBalance").once("value");
+updates["players/"+uid+"/walletBalance"]=Number(bal.val()||0)+Number(p.amount||0);
+}
+await db.ref().update(updates);
+loadAdmin();
+}catch(e){alert(e.message)}
 };
 </script>
 </body>
